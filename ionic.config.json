@@ -1,0 +1,7 @@
+{
+  "name": "MavTrails",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
