@@ -21,7 +21,7 @@ export class UserService {
         res => {
           //map JSON from firebase to Users
           let users = res.map((user: any) => new
-            User(user.username, user.email, user.password, user.profilePicture))
+            User(user.id, user.profilePicture))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
         },
@@ -36,12 +36,12 @@ export class UserService {
   }
   async saveUser(user: User) {
 
-    await this.firebaseService.createDoc(user, `users/${user.username}`)
+    await this.firebaseService.createDoc(user, `users/${user.id}`)
     console.log("save it");
     
   }
   async deleteUser(user: User) {
-    await this.firebaseService.deleteDoc(`users/${user.username}`)
+    await this.firebaseService.deleteDoc(`users/${user.id}`)
   }
   ngOnDestroy() {
     this.firebaseObservable?.unsubscribe()

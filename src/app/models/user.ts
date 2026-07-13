@@ -1,18 +1,12 @@
 export class User {
-    username: string = ""
-    email: string = ""
-    password: string = ""
+    id: string = "" // The ID assigned by Firebase
     profilePicture: string = ""
 
     constructor(
-        usernameIn: string,
-        emailIn: string,
-        passwordIn: string,
+        idIn: string,
         profilePictureIn: string
     ) {
-        this.username = usernameIn
-        this.email = emailIn
-        this.password = passwordIn
+        this.id = idIn;
         this.profilePicture = profilePictureIn
     }
 }
