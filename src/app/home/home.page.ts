@@ -3,6 +3,7 @@ import { FirebaseService } from '../services/firebase-service';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
+import { IonSearchbar } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
