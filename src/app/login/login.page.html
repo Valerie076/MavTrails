@@ -19,17 +19,5 @@
     <ion-input label="Password:" placeholder="enter password here" type="password" [(ngModel)]="passwordIn"></ion-input>
   </ion-item>
   <ion-button (click)="login()">Sign In</ion-button>
-
-  <ion-header>Register</ion-header>
-  <ion-item>
-    <ion-input label="Email:" placeholder="enter email here" type="email" [(ngModel)]="regEmailIn"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Password:" placeholder="enter password here" type="password" [(ngModel)]="regPasswordIn"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Confirm Password:" placeholder="enter password here" type="password" [(ngModel)]="regPasswordConfIn"></ion-input>
-  </ion-item>
-  <ion-button (click)="register()">Sign Up</ion-button>
-
+  <ion-button (click)="presentRegister()">Register</ion-button>
 </ion-content>
