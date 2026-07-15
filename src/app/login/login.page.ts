@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { ErrorService } from '../services/error-service';
+import { RegisterComponent } from '../components/register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +16,11 @@ export class LoginPage implements OnInit {
   emailIn: string = "";
   passwordIn: string = "";
 
-  regEmailIn: string = "";
-  regPasswordIn: string = "";
-  regPasswordConfIn: string = "";
-
   constructor(
     private authService: AuthService,
     private router: Router,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -42,33 +41,13 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async register() {
-    try {
-      let result = await this.authService.register(this.regEmailIn, this.regPasswordIn, this.regPasswordConfIn);
-  
-      if (result != null) {
-        this.router.navigateByUrl("home");
-      } else {
-        this.errorService.createAlert("Error", "Failed to register.");
-        this.clearPasswords();
-      }
-    } catch (err: any) {
-      this.errorService.createAlert("Error", err.message);
-    } finally {
-      this.clearFields();
-    }
-  }
-
   clearFields() {
     this.emailIn = "";
-    this.regEmailIn = "";
     this.clearPasswords();
   }
   
   clearPasswords() {
     this.passwordIn = "";
-    this.regPasswordIn = "";
-    this.regPasswordConfIn = "";
   }
 
   eventHandler(keyCode: number) {
@@ -78,11 +57,11 @@ export class LoginPage implements OnInit {
     }
   }
 
-  eventHandlerReg(keyCode: number) {
-    if (keyCode === 13) {
-      // Pressed ENTER
-      this.register()
-    }
+  async presentRegister() {
+    let modal = await this.modalController.create({
+      component: RegisterComponent
+    });
+    await modal.present();
   }
 
 }
