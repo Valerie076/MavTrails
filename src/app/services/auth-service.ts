@@ -5,13 +5,17 @@ import {
   createUserWithEmailAndPassword,
   signOut
  } from '@angular/fire/auth';
+import { ErrorService } from './error-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   
-  constructor(private auth: Auth) { }
+  constructor(
+    private auth: Auth,
+    private errorService: ErrorService
+  ) { }
 
   async register(email: string, password: string, passwordConf: string) {
     if (password != passwordConf) {
@@ -22,6 +26,19 @@ export class AuthService {
       let user = await createUserWithEmailAndPassword(this.auth, email, password);
       return user;
     } catch(err: any) {
+      let message = "Could not create user.";
+
+      if (err.message.indexOf("invalid-email") !== -1) {
+        message = "Invalid email address.";
+      } else if (err.message.indexOf("weak-password") !== -1) {
+        message = "Password must be at least 6 characters.";
+      } else if (err.message.indexOf("email-already-in-use") !== -1) {
+        message = "This email is already registered.";
+      } else if (err.message.indexOf("missing-password") !== -1) {
+        message = "Password cannot be empty."
+      }
+      
+      this.errorService.createAlert("Error", message);
       return null;
     }
   }
