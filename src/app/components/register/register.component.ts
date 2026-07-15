@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserCredential } from '@angular/fire/auth';
+import { User as FirebaseUser, UserCredential } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service';
 import { ErrorService } from 'src/app/services/error-service';
 import { ModalService } from 'src/app/services/modal-service';
@@ -48,8 +49,9 @@ export class RegisterComponent  implements OnInit {
     }
   }
 
-  createUser(user: User) {
-    user.uid
+  createUser(user: FirebaseUser) {
+    let newUser = new User(user.uid, "", "");
+    this.userService.saveUser(newUser);
   }
 
   clearFields() {
