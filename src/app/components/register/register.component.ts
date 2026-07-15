@@ -36,6 +36,7 @@ export class RegisterComponent  implements OnInit {
   
       if (result != null) {
         this.dismissModal();
+        this.createUser();
         this.router.navigateByUrl("home");
       } else {
         // this.errorService.createAlert("Error", "Failed to register.");
@@ -44,6 +45,10 @@ export class RegisterComponent  implements OnInit {
     } catch (err: any) {
       this.errorService.createAlert("Error", err.message);
     }
+  }
+
+  createUser() {
+
   }
 
   clearFields() {

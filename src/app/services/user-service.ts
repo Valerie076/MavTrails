@@ -27,7 +27,7 @@ export class UserService {
         },
       )
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
   get users(): Observable<User[]> {

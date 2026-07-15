@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
 
     if (result != null) {
       this.router.navigateByUrl("home");
+      // TODO - LOAD USER
     } else {
       this.errorService.createAlert("Error", "Invalid credentials.")
       this.clearPasswords();
