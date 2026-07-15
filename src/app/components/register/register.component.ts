@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { User, UserCredential } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth-service';
 import { ErrorService } from 'src/app/services/error-service';
+import { ModalService } from 'src/app/services/modal-service';
 import { UserService } from 'src/app/services/user-service';
 
 @Component({
@@ -19,7 +20,7 @@ export class RegisterComponent  implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private modalController: ModalController,
+    private modalService: ModalService,
     private errorService: ErrorService,
     private router: Router
   ) { }
@@ -27,7 +28,7 @@ export class RegisterComponent  implements OnInit {
   ngOnInit() {}
 
   dismissModal() {
-    this.modalController.dismiss()
+    this.modalService.dismiss()
   }
 
   async register() {
@@ -36,7 +37,7 @@ export class RegisterComponent  implements OnInit {
   
       if (result != null) {
         this.dismissModal();
-        this.createUser();
+        this.createUser(result.user);
         this.router.navigateByUrl("home");
       } else {
         // this.errorService.createAlert("Error", "Failed to register.");
@@ -47,8 +48,8 @@ export class RegisterComponent  implements OnInit {
     }
   }
 
-  createUser() {
-
+  createUser(user: User) {
+    user.uid
   }
 
   clearFields() {

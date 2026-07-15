@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { ErrorService } from '../services/error-service';
+import { ModalService } from '../services/modal-service';
 import { RegisterComponent } from '../components/register/register.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private errorService: ErrorService,
-    private modalController: ModalController
+    private modalServcie: ModalService
   ) { }
 
   ngOnInit() {
@@ -58,11 +58,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async presentRegister() {
-    let modal = await this.modalController.create({
-      component: RegisterComponent
-    });
-    await modal.present();
+  presentRegister() {
+    this.modalServcie.createModal(RegisterComponent)
   }
-
 }
