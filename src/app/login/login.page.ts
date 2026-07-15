@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
+import { ErrorService } from '../services/error-service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class LoginPage implements OnInit {
     if (result != null) {
       this.router.navigateByUrl("home");
     } else {
-      // TODO - show error with error service
+      this.errorService.createAlert("Error", "Invalid credentials.")
       this.clearPasswords();
     }
   }
@@ -47,11 +49,11 @@ export class LoginPage implements OnInit {
       if (result != null) {
         this.router.navigateByUrl("home");
       } else {
-        // TODO - show error with error service err.message
+        this.errorService.createAlert("Error", "Failed to register.");
         this.clearPasswords();
       }
     } catch (err: any) {
-      // TODO - show error with error service err.message
+      this.errorService.createAlert("Error", err.message);
     } finally {
       this.clearFields();
     }
@@ -69,5 +71,18 @@ export class LoginPage implements OnInit {
     this.regPasswordConfIn = "";
   }
 
+  eventHandler(keyCode: number) {
+    if (keyCode === 13) {
+      // Pressed ENTER
+      this.login()
+    }
+  }
+
+  eventHandlerReg(keyCode: number) {
+    if (keyCode === 13) {
+      // Pressed ENTER
+      this.register()
+    }
+  }
 
 }
