@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonSearchbar } from '@ionic/angular';
+import { FirebaseService } from '../services/firebase-service';
+import { User } from '../models/user';
+import { AuthService } from '../services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +12,14 @@ import { IonSearchbar } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl("login");
+  }
 }
