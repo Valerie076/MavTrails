@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <ion-input label="Email:" placeholder="enter email here" type="email" [(ngModel)]="emailIn"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password:" placeholder="enter password here" type="password" [(ngModel)]="passwordIn"></ion-input>
+  </ion-item>
+  <ion-button (click)="login()">Sign In</ion-button>
+  <ion-button (click)="presentRegister()">Register</ion-button>
+</ion-content>

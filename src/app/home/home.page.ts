@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from '../services/firebase-service';
+import { User } from '../models/user';
+import { AuthService } from '../services/auth-service';
+import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
 
 @Component({
@@ -9,19 +13,14 @@ import { IonSearchbar } from '@ionic/angular';
 })
 export class HomePage {
 
-  onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      const gpsData = e.target.result;
-      console.log('Uploaded GPS File Content:', gpsData);
-    };
-    reader.readAsText(file);
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl("login");
   }
-}
-
-
-  constructor() {}
-
 }
