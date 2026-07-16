@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'leaflet-test',
+    loadChildren: () => import('./leaflet-test/leaflet-test.module').then( m => m.LeafletTestPageModule)
   },
+
 ];
 
 @NgModule({
