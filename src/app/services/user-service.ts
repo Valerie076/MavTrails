@@ -7,7 +7,7 @@ import { FirebaseService } from './firebase-service';
   providedIn: 'root',
 })
 export class UserService {
-  selectedUser!: User
+  activeUser!: User
 
   private _users: BehaviorSubject<User[]> = new BehaviorSubject([] as
     User[])
@@ -27,7 +27,7 @@ export class UserService {
         },
       )
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
   get users(): Observable<User[]> {
@@ -45,5 +45,9 @@ export class UserService {
   }
   ngOnDestroy() {
     this.firebaseObservable?.unsubscribe()
+  }
+
+  getUserByID(users: User[], uid: string): User | undefined {
+    return users.find(user => user.id === uid);
   }
 }
