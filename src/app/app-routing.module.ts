@@ -20,9 +20,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  },  {
-    path: 'newpage',
-    loadChildren: () => import('./pages/newpage/newpage.module').then( m => m.NewpagePageModule)
+  },
+  {
+    path: 'main-map',
+    loadChildren: () => import('./pages/main-map/main-map.module').then( m => m.MainMapPageModule)
   }
 
 ];
