@@ -8,6 +8,6 @@ export class Music {
     }
 
     getDetails(): string {
-        return ID: ${this.id}, Name: ${this.name};
+        return `ID: ${this.id}, Name: ${this.name}`;
     }
 }
