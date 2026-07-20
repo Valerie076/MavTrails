@@ -1,5 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Hello, ____</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+<ion-content [fullscreen]="false">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-card>
+      <strong>
+        <ion-img
+          src="https://media.istockphoto.com/id/170958625/photo/dark-blue-grunge-background.webp?b=1&s=612x612&w=0&k=20&c=Njqazg0TAFGwJfTa9a6ByWvlumaa3wvtnEjdOgvwa1w="></ion-img>
+      </strong>
+    </ion-card>
+  </div>
+
+  <div id="profilePic">
+    <ion-card>
+      <ion-img
+        src="https://www.syfy.com/sites/syfy/files/styles/scale_862/public/2024/03/screenshot_2024-03-15_at_11.35.32_am.jpg"></ion-img>
+    </ion-card>
+  </div>
+
+  <ion-grid style="height: 100%;">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+      <ion-col size="8" size-md="6" size-lg="4">
+        <ion-card>
+          <ion-card-content>
+            <strong>
+              Email:
+              <br>
+              Phone:
+            </strong>
+            <p><br>Start with Ionic </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-button (click)="navigatePage('home')">Home</ion-button>
+
+
+ <!-- NOTE: Once we get the firebase stuff and everything can be applied to each page we can do mustache notation -->
