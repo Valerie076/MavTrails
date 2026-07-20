@@ -17,7 +17,8 @@ export class MainMapPage implements OnInit {
   globalNewPath: L.LatLngExpression[] = []; // Place for the path to be saved.
 
   constructor(
-    private trailService: TrailService
+    private trailService: TrailService,
+    private router: Router
   ) { }
 
   ionViewWillEnter() {
@@ -54,6 +55,10 @@ export class MainMapPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  navigatePage(path: string) {
+this.router.navigateByUrl(path)
   }
 
   onClick(e: L.LeafletMouseEvent, newPath: L.LatLngExpression[]) {
