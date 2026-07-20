@@ -91,4 +91,12 @@
     </ion-accordion>
   </ion-accordion-group>
 
+  @for(trail of trails; track $index) {
+    <ion-item style="text-align: center;">
+      <ion-button (click)="openTrailDetails(trail)" expand="block">
+        {{trail.location}}
+      </ion-button>
+    </ion-item>
+  }
+
 </ion-content>

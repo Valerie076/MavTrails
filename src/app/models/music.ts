@@ -1,13 +1,19 @@
-export class Music {
-    id: number;
-    name: string;
+import { MusicType } from "../enums/music-type";
 
-    constructor(id: number, name: string) {
+export class Music {
+    id: string;
+    name: string;
+    artist: string;
+    type: MusicType;
+
+    constructor(id: string, name: string, artist: string, type: MusicType) {
         this.id = id;
         this.name = name;
+        this.artist = artist;
+        this.type = type;
     }
 
     getDetails(): string {
-        return `ID: ${this.id}, Name: ${this.name}`;
+        return `ID: ${this.id}, Name: ${this.name}, Artist: ${this.artist}`;
     }
 }
