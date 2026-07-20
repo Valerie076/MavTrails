@@ -32,7 +32,11 @@ const routes: Routes = [
   {
     path: 'main-map',
     loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
+  },  {
+    path: 'trail-modal',
+    loadChildren: () => import('./trail-modal/trail-modal.module').then( m => m.TrailModalPageModule)
   }
+
 
 ];
 
