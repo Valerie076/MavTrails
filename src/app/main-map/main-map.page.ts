@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet'
 import { TrailService } from '../services/trail-service';
 import { Trail } from '../models/trail';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-map',
