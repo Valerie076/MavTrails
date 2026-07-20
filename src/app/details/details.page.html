@@ -5,30 +5,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
-    <ion-title size="large">Difficulty</ion-title>
-    <ion-card>
-      {{detailsOne.difficulty}}
-    </ion-card>
-  </ion-toolbar>
 
-  <ion-toolbar>
-    <ion-title size="large">Features</ion-title>
-    <ion-card>
-      {{detailsOne.features}}
-    </ion-card>
-  </ion-toolbar>
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <div>
+            Posted by: {{postedBy.username}}
+            <div class="circle-picture">
+              <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
+            </div>
+            <br>
+            Rating: {{detailsOne.ratings}}
+          </div>
+        </ion-col>
 
-  <ion-toolbar>
-    <ion-title size="large">Media</ion-title>
-    <ion-card>
-      It's own thing
-    </ion-card>
-  </ion-toolbar>
+        <ion-col size="6" class="mavtrails">
+          <div>MAVTRAILS</div>
+        </ion-col>
+      </ion-row>
 
-  <ion-header>Posted by:</ion-header>
-  {{postedBy.username}}
-  <ion-header>Rating:</ion-header>
-  {{detailsOne.ratings}}
-  <!-- For ratings make sure to average all ratings and have final answer be output -->
-</ion-content>
+      <ion-row>
+        <ion-toolbar>
+          <ion-title size="large">Difficulty</ion-title>
+          {{detailsOne.difficulty}}
+        </ion-toolbar>
+
+        <ion-toolbar>
+          <ion-title size="large">Features</ion-title>
+          {{detailsOne.features}}
+        </ion-toolbar>
+
+        <ion-toolbar>
+          <ion-title size="large">Media</ion-title>
+          It's own thing
+        </ion-toolbar>
+      </ion-row>
+
+    </ion-grid>
+  </ion-content>
+
+
+
+  <ion-button (click)="navigatePage('home')">Home</ion-button>
