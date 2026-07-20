@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewpagePageRoutingModule } from './newpage-routing.module';
+import { MainMapPageRoutingModule } from './main-map-routing.module';
 
-import { NewpagePage } from './newpage.page';
+import { MainMapPage } from './main-map.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewpagePageRoutingModule
+    MainMapPageRoutingModule
   ],
-  declarations: [NewpagePage]
+  declarations: [MainMapPage]
 })
-export class NewpagePageModule {}
+export class MainMapPageModule {}
