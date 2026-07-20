@@ -22,8 +22,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'main-map',
-    loadChildren: () => import('./pages/main-map/main-map.module').then( m => m.MainMapPageModule)
+    path: 'details',
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 
 ];
