@@ -26,7 +26,7 @@ export class AuthService {
       let user = await createUserWithEmailAndPassword(this.auth, email, password);
       return user;
     } catch(err: any) {
-      let message = "Could not create user.";
+      let message = "Could not create user. Please try again.";
 
       if (err.message.indexOf("invalid-email") !== -1) {
         message = "Invalid email address.";
