@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+    <ion-button slot="end" style="color: white" (click)="dismissModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input label="Email:" placeholder="enter email here" type="email" (keypress)="eventHandlerReg($event.keyCode)" [(ngModel)]="regEmailIn"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password:" placeholder="enter password here" type="password" (keypress)="eventHandlerReg($event.keyCode)" [(ngModel)]="regPasswordIn"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Confirm Password:" placeholder="enter password here" type="password" (keypress)="eventHandlerReg($event.keyCode)" [(ngModel)]="regPasswordConfIn"></ion-input>
+  </ion-item>
+
+<ion-footer>
+  <ion-button slot="start" style="color: white" (click)="register()">Sign Up</ion-button>
+</ion-footer>
