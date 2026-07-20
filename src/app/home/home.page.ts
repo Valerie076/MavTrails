@@ -26,21 +26,21 @@ export class HomePage {
     private router: Router,
     private trailService: TrailService
   ) {
-    trailService.saveTrail(
-      new Trail(
-        "id",
-        100,
-        "Hard",
-        [10, 9, 10, 9, 9, 8, 7, 10, 9],
-        "Elmwood Park Trail",
-        1200,
-        "A cool trail through the park.",
-        ["Trees"],
-        [new Music("id", "Best Song", "Best Artist", MusicType.Song)],
-        [],
-        []
-      )
-    )
+    // trailService.saveTrail(
+    //   new Trail(
+    //     "id",
+    //     100,
+    //     "Hard",
+    //     [10, 9, 10, 9, 9, 8, 7, 10, 9],
+    //     "Elmwood Park Trail",
+    //     1200,
+    //     "A cool trail through the park.",
+    //     ["Trees"],
+    //     [new Music("id", "Best Song", "Best Artist", MusicType.Song)],
+    //     [],
+    //     []
+    //   )
+    // )
   }
 
   ionViewWillEnter() {
@@ -52,25 +52,21 @@ export class HomePage {
   }
 
   openTrailDetails(trail: Trail) {
-    console.log(trail);
     
     this.trailService.saveTrail(trail);
-    console.log("SAVED");
     
     this.trailService.activeTrail = trail;
-    console.log("ACTIVE");
     
-    this.router.navigateByUrl("details");
-    console.log("SWITCH");
-    
+    this.navigatePage("details");
   }
 
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl("login");
+    this.navigatePage("login");
   }
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
+    
   }
 }

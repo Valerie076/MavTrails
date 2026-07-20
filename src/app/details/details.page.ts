@@ -30,15 +30,15 @@ export class DetailsPage implements OnInit {
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg")
 
   constructor(
-    private trailService: TrailService
+    private trailService: TrailService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.trail = this.trailService.activeTrail;
   }
 
-  ionViewWillEnter() {
-    console.log(this.trailService.activeTrail);
-    
-    this.trail = this.trailService.activeTrail;
+  navigatePage(path: string) {
+    this.router.navigateByUrl(path);
   }
 }
