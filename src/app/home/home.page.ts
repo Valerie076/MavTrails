@@ -18,7 +18,6 @@ export class HomePage {
     private router: Router
   ) { }
 
-
   async logout() {
     await this.authService.logout();
     this.router.navigateByUrl("login");
