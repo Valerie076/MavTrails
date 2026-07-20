@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-title>Details</ion-title>
   </ion-toolbar>
+  <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
 </ion-header>
 
 
@@ -44,8 +45,6 @@
       </ion-row>
 
     </ion-grid>
+
+    <ion-button (click)="navigatePage('home')">Home</ion-button>
   </ion-content>
-
-
-
-  <ion-button (click)="navigatePage('home')">Home</ion-button>

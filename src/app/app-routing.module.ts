@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'main-map',
+    loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
   }
 
 ];

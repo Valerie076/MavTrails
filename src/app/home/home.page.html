@@ -3,15 +3,22 @@
     <ion-title>
       poopybbutt
     </ion-title>
+    <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
-    <ion-button expand="block" routerLink="/main-map">
+    <ion-button routerLink="/main-map">
   Main Map
 </ion-button>
 
   </ion-toolbar>
 </ion-header>
 
+<<<<<<< HEAD
 <ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
+=======
+<ion-button (click)="navigatePage('details')">Details</ion-button>
+
+<ion-searchbar placeholder="Search for a trail"></ion-searchbar>
+>>>>>>> a036fe5bcba1e5a815e9fb3df3b563ab37c61d0e
 
 <ion-content>
 
