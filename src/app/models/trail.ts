@@ -3,7 +3,8 @@ import { Music } from "./music"
 import { Podcast } from "./podcast"
 
 export class Trail {
-    id: string = ""
+    id?: string = ""
+    path: number[][] = []
     length: number = 0
     difficulty: string = ""
     ratings: number[] = [0]
@@ -16,7 +17,7 @@ export class Trail {
     audiobooks: Audiobook[] = [];
 
     constructor(
-        id: string,
+        path: number[][],
         lengthIn: number,
         difficultyIn: string,
         ratingsIn: number[],
@@ -26,9 +27,10 @@ export class Trail {
         featuresIn: string[],
         musicIn: Music[],
         podcastsIn: Podcast[],
-        audiobooksIn: Audiobook[]
+        audiobooksIn: Audiobook[],
+        id?: string
     ) {
-        this.id = id
+        this.path = path
         this.length = lengthIn
         this.difficulty = difficultyIn
         this.ratings = ratingsIn
@@ -39,6 +41,7 @@ export class Trail {
         this.music = musicIn;
         this.podcasts = podcastsIn;
         this.audiobooks = audiobooksIn;
+        this.id = id
     }
 
 }

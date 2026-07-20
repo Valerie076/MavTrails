@@ -23,6 +23,7 @@ export class TrailService {
           let trails = res.map((trail: any) => new
             Trail(
               trail.id,
+              trail.path,
               trail.length,
               trail.difficulty,
               trail.ratings,
@@ -48,7 +49,7 @@ export class TrailService {
   }
   async saveTrail(trail: Trail) {
 
-    await this.firebaseService.createDoc(trail, `trails/${trail.id}`)
+    await this.firebaseService.createDoc(trail, `trails`)
     console.log("save trail");
     
   }
