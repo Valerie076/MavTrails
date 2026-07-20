@@ -7,6 +7,7 @@ import { Audiobook } from '../models/audiobook';
 import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
