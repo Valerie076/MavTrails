@@ -4,9 +4,14 @@
       poopybbutt
     </ion-title>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
+    <ion-button expand="block" routerLink="/main-map">
+  Main Map
+</ion-button>
 
   </ion-toolbar>
 </ion-header>
+
+<ion-button (click)="navigatePage('details')">Details</ion-button>
 
 <ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
 

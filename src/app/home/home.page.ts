@@ -23,4 +23,8 @@ export class HomePage {
     await this.authService.logout();
     this.router.navigateByUrl("login");
   }
+
+  navigatePage(page: string) {
+    this.router.navigateByUrl(page)
+  }
 }
