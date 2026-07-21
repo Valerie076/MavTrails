@@ -4,8 +4,10 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
 import { TrailModalPage } from '../trail-modal/trail-modal.page';
+import { ModalController } from '@ionic/angular';
+import { MediaModalPage } from '../media-modal/media-modal.page';
+import { ModalService } from '../services/modal-service';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +20,18 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private modalService: ModalService
   ) { }
 
+  async openMediaModal() {
+  const modal = await this.modalCtrl.create({
+    component: MediaModalPage
+  });
+
+  await modal.present();
+
+}
 async openTrailModal() {
   const modal = await this.modalCtrl.create({
     component: TrailModalPage

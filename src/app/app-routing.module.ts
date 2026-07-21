@@ -35,6 +35,10 @@ const routes: Routes = [
   },  {
     path: 'trail-modal',
     loadChildren: () => import('./trail-modal/trail-modal.module').then( m => m.TrailModalPageModule)
+  },
+  {
+    path: 'media-modal',
+    loadChildren: () => import('./media-modal/media-modal.module').then( m => m.MediaModalPageModule)
   }
 
 
