@@ -26,8 +26,7 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private trailService: TrailService,
-    private modalCtrl: ModalController
+    private trailService: TrailService
   ) { }
 
   ionViewWillEnter() {
@@ -37,7 +36,6 @@ export class HomePage {
   }
 
   openTrailDetails(trail: Trail) {
-
     this.trailService.saveTrail(trail);
 
     this.trailService.activeTrail = trail;
@@ -45,14 +43,6 @@ export class HomePage {
     this.navigatePage("details");
   }
 
-  async openTrailModal() {
-    const modal = await this.modalCtrl.create({
-      component: TrailModalPage
-    });
-
-    await modal.present();
-  }
-  
   async logout() {
     await this.authService.logout();
     this.navigatePage("login");

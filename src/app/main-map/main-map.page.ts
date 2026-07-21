@@ -5,7 +5,9 @@ import { Trail } from '../models/trail';
 import { Coordinate } from '../models/coordinate';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { ModalService } from '../services/modal-service';
 import { AuthService } from '../services/auth-service';
+import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
 
 @Component({
   selector: 'app-main-map',
@@ -25,6 +27,7 @@ export class MainMapPage implements OnInit {
   constructor(
     private trailService: TrailService,
     private router: Router,
+    private modalService: ModalService,
     private authService: AuthService
   ) { }
 
@@ -97,9 +100,9 @@ export class MainMapPage implements OnInit {
 
   createTrail() {
     let newPath: L.LatLngExpression[] = [];
-    this.globalNewPath = newPath;
+    this.trailService.newTrailPath = newPath;
 
-    this.creatingTrail = !this.creatingTrail;
+    this.creatingTrail = true;
 
     this.map.on('click', (e) => {
       this.onClick(e, newPath);
@@ -107,40 +110,17 @@ export class MainMapPage implements OnInit {
   }
 
   endTrail() {
+    this.creatingTrail = false;
+
     this.map.off('click');
 
-    console.log(this.globalNewPath);
-
+    if (this.trailService.newTrailPath.length > 0) {
+      this.openTrailModal();
+    }
   }
 
-  saveTrail() {
-    let coords: Coordinate[] = [];
-
-    for (let coord of this.globalNewPath) {
-      let coordNum = coord as number[];
-
-      coords.push(
-        new Coordinate(coordNum[0], coordNum[1])
-      );
-    }
-
-    this.trailService.saveTrail(
-      new Trail(
-        coords,
-        0,
-        "insert difficulty",
-        [],
-        "location",
-        0,
-        "Description",
-        [],
-        [],
-        [],
-        []
-      )
-    );
-
-    this.endTrail();
+  async openTrailModal() {
+    this.modalService.createModal(TrailModalPage);
   }
 
   async logout() {
