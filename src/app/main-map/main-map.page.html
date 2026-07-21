@@ -10,6 +10,7 @@
   </ion-toolbar>
   <ion-button (click)="navigatePage('home')">Home</ion-button>
   <ion-button (click)="navigatePage('profile')">Profile</ion-button>
+      <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
 </ion-header>
 
 <ion-content [fullscreen]="true">

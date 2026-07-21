@@ -5,6 +5,7 @@ import { Trail } from '../models/trail';
 import { Coordinate } from '../models/coordinate';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-main-map',
@@ -23,7 +24,8 @@ export class MainMapPage implements OnInit {
 
   constructor(
     private trailService: TrailService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ionViewWillEnter() {
@@ -139,6 +141,11 @@ export class MainMapPage implements OnInit {
     );
 
     this.endTrail();
+  }
+
+  async logout() {
+    await this.authService.logout();
+    this.navigatePage("login");
   }
 }
 
