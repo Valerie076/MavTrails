@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Trail } from 'src/app/models/trail';
 import { TrailService } from 'src/app/services/trail-service';
 
 
@@ -28,7 +29,22 @@ export class TrailModalPage implements OnInit {
   }
 
   saveTrail() {
-    this.trailService.saveTrailPath();
+    let trailNoPath: Trail = new Trail(
+      [],
+      this.name,
+      0,
+      "",
+      [],
+      this.location,
+      0,
+      this.description,
+      [],
+      [],
+      [],
+      []
+    )
+    this.trailService.saveTrailPath(trailNoPath);
+    this.closeModal();
   }
 
 }
