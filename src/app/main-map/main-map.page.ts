@@ -5,6 +5,8 @@ import { Trail } from '../models/trail';
 import { Coordinate } from '../models/coordinate';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { ModalService } from '../services/modal-service';
+import { TrailModalPage } from '../trail-modal/trail-modal.page';
 
 @Component({
   selector: 'app-main-map',
@@ -23,7 +25,8 @@ export class MainMapPage implements OnInit {
 
   constructor(
     private trailService: TrailService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) { }
 
   ionViewWillEnter() {
@@ -97,7 +100,7 @@ export class MainMapPage implements OnInit {
     let newPath: L.LatLngExpression[] = [];
     this.globalNewPath = newPath;
 
-    this.creatingTrail = !this.creatingTrail;
+    this.creatingTrail = true;
 
     this.map.on('click', (e) => {
       this.onClick(e, newPath);
@@ -105,10 +108,17 @@ export class MainMapPage implements OnInit {
   }
 
   endTrail() {
+    this.creatingTrail = false;
+
     this.map.off('click');
 
-    console.log(this.globalNewPath);
+    if (this.globalNewPath.length > 0) {
+      this.openTrailModal();
+    }
+  }
 
+  async openTrailModal() {
+    this.modalService.createModal(TrailModalPage);
   }
 
   saveTrail() {
@@ -137,8 +147,6 @@ export class MainMapPage implements OnInit {
         []
       )
     );
-
-    this.endTrail();
   }
 }
 

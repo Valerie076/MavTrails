@@ -11,17 +11,16 @@ import { ModalController } from '@ionic/angular';
 })
 export class TrailModalPage implements OnInit {
   constructor(
-  private modalCtrl: ModalController)
-   {}
+    private modalCtrl: ModalController) { }
 
-closeModal(){
-  this.modalCtrl.dismiss();
-}
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
 
 
   ngOnInit() {
   }
-  
+
 
 }
 
