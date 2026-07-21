@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet'
 import { TrailService } from '../services/trail-service';
 import { Trail } from '../models/trail';
+import { Coordinate } from '../models/coordinate';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-map',
@@ -10,7 +12,10 @@ import { Trail } from '../models/trail';
   standalone: false,
 })
 export class MainMapPage implements OnInit {
-  map!: L.Map
+  trailSubscription?: Subscription;
+  trails: Trail[] = [];
+
+  map!: L.Map;
 
   creatingTrail: boolean = false;
   globalNewPath: L.LatLngExpression[] = []; // Place for the path to be saved.
@@ -20,6 +25,7 @@ export class MainMapPage implements OnInit {
   ) { }
 
   ionViewWillEnter() {
+
     this.map = L.map('map').setView([41.2516656, -96.0097386], 15);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -50,9 +56,34 @@ export class MainMapPage implements OnInit {
       opacity: 0.7
     }).addTo(this.map);
 
+    // STARTUP TASKS
+    this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
+      this.trails = data;
+      this.populateMap();
+    });
+
   }
 
   ngOnInit() {
+  }
+
+  populateMap() {
+    for (let trail of this.trails) {
+      let latlng: L.LatLngExpression[] = [];
+
+      let pathCoords = trail.path;
+      for (let coord of pathCoords) {
+        let a = L.latLng(coord.longitude, coord.latitude);
+        latlng.push(a)
+      }
+
+
+      const polyline = L.polyline(latlng, {
+        color: 'blue',
+        weight: 5,
+        opacity: 0.7
+      }).addTo(this.map);
+    }
   }
 
   onClick(e: L.LeafletMouseEvent, newPath: L.LatLngExpression[]) {
@@ -92,13 +123,19 @@ export class MainMapPage implements OnInit {
   }
 
   saveTrail() {
-    for (let coord in this.globalNewPath) {
-      
+    let coords: Coordinate[] = [];
+
+    for (let coord of this.globalNewPath) {
+      let coordNum = coord as number[];
+
+      coords.push(
+        new Coordinate(coordNum[0], coordNum[1])
+      );
     }
 
     this.trailService.saveTrail(
       new Trail(
-        this.globalNewPath as number[][],
+        coords,
         0,
         "insert difficulty",
         [],

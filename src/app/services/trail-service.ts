@@ -22,7 +22,6 @@ export class TrailService {
           //map JSON from firebase to Users
           let trails = res.map((trail: any) => new
             Trail(
-              trail.id,
               trail.path,
               trail.length,
               trail.difficulty,
@@ -33,7 +32,8 @@ export class TrailService {
               trail.features,
               trail.music,
               trail.podcasts,
-              trail.audiobooks
+              trail.audiobooks,
+              trail.id
             ))
           //update BehaviorSubject to have newest Firebase values
           this._trails.next(trails)

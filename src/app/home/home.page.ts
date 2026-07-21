@@ -25,30 +25,12 @@ export class HomePage {
     private authService: AuthService,
     private router: Router,
     private trailService: TrailService
-  ) {
-    // trailService.saveTrail(
-    //   new Trail(
-    //     "id",
-    //     100,
-    //     "Hard",
-    //     [10, 9, 10, 9, 9, 8, 7, 10, 9],
-    //     "Elmwood Park Trail",
-    //     1200,
-    //     "A cool trail through the park.",
-    //     ["Trees"],
-    //     [new Music("id", "Best Song", "Best Artist", MusicType.Song)],
-    //     [],
-    //     []
-    //   )
-    // )
-  }
+  ) { }
 
   ionViewWillEnter() {
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
       this.trails = data
     })
-    console.log(this.trails);
-    
   }
 
   openTrailDetails(trail: Trail) {

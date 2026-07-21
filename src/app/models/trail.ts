@@ -1,10 +1,11 @@
 import { Audiobook } from "./audiobook"
+import { Coordinate } from "./coordinate"
 import { Music } from "./music"
 import { Podcast } from "./podcast"
 
 export class Trail {
     id?: string = ""
-    path: number[][] = []
+    path: Coordinate[] = []
     length: number = 0
     difficulty: string = ""
     ratings: number[] = [0]
@@ -17,7 +18,7 @@ export class Trail {
     audiobooks: Audiobook[] = [];
 
     constructor(
-        path: number[][],
+        path: Coordinate[],
         lengthIn: number,
         difficultyIn: string,
         ratingsIn: number[],
