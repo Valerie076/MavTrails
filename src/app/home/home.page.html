@@ -11,8 +11,13 @@
 </ion-header>
 
 <ion-button (click)="navigatePage('details')">Details</ion-button>
-
-<ion-searchbar placeholder="Search for a trail"></ion-searchbar>
+<ion-button (click)="openTrailModal()">
+  Add Trail
+</ion-button>
+<ion-button (click)="openMediaModal()">
+  Add Media
+</ion-button>
+<ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
 
 <ion-content>
 
