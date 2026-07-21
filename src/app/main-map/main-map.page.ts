@@ -100,7 +100,7 @@ export class MainMapPage implements OnInit {
 
   createTrail() {
     let newPath: L.LatLngExpression[] = [];
-    this.globalNewPath = newPath;
+    this.trailService.newTrailPath = newPath;
 
     this.creatingTrail = true;
 
@@ -114,41 +114,13 @@ export class MainMapPage implements OnInit {
 
     this.map.off('click');
 
-    if (this.globalNewPath.length > 0) {
+    if (this.trailService.newTrailPath.length > 0) {
       this.openTrailModal();
     }
   }
 
   async openTrailModal() {
     this.modalService.createModal(TrailModalPage);
-  }
-
-  saveTrail() {
-    let coords: Coordinate[] = [];
-
-    for (let coord of this.globalNewPath) {
-      let coordNum = coord as number[];
-
-      coords.push(
-        new Coordinate(coordNum[0], coordNum[1])
-      );
-    }
-
-    this.trailService.saveTrail(
-      new Trail(
-        coords,
-        0,
-        "insert difficulty",
-        [],
-        "location",
-        0,
-        "Description",
-        [],
-        [],
-        [],
-        []
-      )
-    );
   }
 
   async logout() {
