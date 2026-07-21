@@ -38,27 +38,7 @@ export class MainMapPage implements OnInit {
       .bindPopup('New Recommendation: <br> Elmwood Park Trail')
       .openPopup();
 
-    const latlngs: L.LatLngExpression[] = [
-      [41.248867, -96.015685
-      ],
-      [41.249723, -96.015048],
-      [41.250348, -96.014298],
-      [41.25133, -96.013869],
-      [41.25133, -96.013246],
-      [41.252414, -96.012174],
-      [41.253079, -96.010365],
-      [41.254071, -96.008905],
-      [41.255325, -96.007344]
-    ];
-
-    // 4. Create the polyline and add it to the map
-    const polyline = L.polyline(latlngs, {
-      color: 'blue',
-      weight: 5,
-      opacity: 0.7
-    }).addTo(this.map);
-
-    // STARTUP TASKS
+    // FETCH TASKS
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
       this.trails = data;
       this.populateMap();
@@ -79,12 +59,16 @@ export class MainMapPage implements OnInit {
         latlng.push(a)
       }
 
-
       const polyline = L.polyline(latlng, {
         color: 'blue',
         weight: 5,
         opacity: 0.7
       }).addTo(this.map);
+
+      polyline.bindTooltip('Edit').addEventListener('click', (e) => {
+        console.log(polyline);
+        
+      })
     }
   }
 
@@ -98,7 +82,6 @@ export class MainMapPage implements OnInit {
     }
 
     let mousePos = e.latlng;
-    // console.log(mousePos);
 
     newPath.push([mousePos.lat, mousePos.lng]);
 
