@@ -17,7 +17,8 @@
   <ion-item>
     <ion-input 
       label="Trail Name"
-      placeholder="Enter trail name">
+      placeholder="Enter trail name"
+      [(ngModel)]="name">
     </ion-input>
   </ion-item>
 
@@ -25,7 +26,8 @@
   <ion-item>
     <ion-input 
       label="Location"
-      placeholder="Enter location">
+      placeholder="Enter location"
+      [(ngModel)]="location">
     </ion-input>
   </ion-item>
 
@@ -33,12 +35,13 @@
   <ion-item>
     <ion-textarea
       label="Description"
-      placeholder="Describe the trail">
+      placeholder="Describe the trail"
+      [(ngModel)]="description">
     </ion-textarea>
   </ion-item>
 
 
-  <ion-button expand="block">
+  <ion-button expand="block" (click)="saveTrail()">
     Save Trail
   </ion-button>
 

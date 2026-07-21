@@ -4,10 +4,16 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
-import { TrailModalPage } from '../trail-modal/trail-modal.page';
 import { ModalController } from '@ionic/angular';
-import { MediaModalPage } from '../media-modal/media-modal.page';
+import { MediaModalPage } from '../components/media-modal/media-modal.page';
 import { ModalService } from '../services/modal-service';
+import { TrailService } from '../services/trail-service';
+import { Trail } from '../models/trail';
+import { Music } from '../models/music';
+import { MusicType } from '../enums/music-type';
+import { Subscription } from 'rxjs';
+import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
+
 
 @Component({
   selector: 'app-home',
@@ -16,12 +22,16 @@ import { ModalService } from '../services/modal-service';
   standalone: false,
 })
 export class HomePage {
+  trailSubscription?: Subscription;
+
+  trails?: Trail[];
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private modalCtrl: ModalController,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private trailService: TrailService
   ) { }
 
   async openMediaModal() {
@@ -36,15 +46,29 @@ async openTrailModal() {
   const modal = await this.modalCtrl.create({
     component: TrailModalPage
   });
-
-  await modal.present();
 }
+    
+  ionViewWillEnter() {
+    this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
+      this.trails = data
+    })
+  }
+
+  openTrailDetails(trail: Trail) {
+    this.trailService.saveTrail(trail);
+
+    this.trailService.activeTrail = trail;
+
+    this.navigatePage("details");
+  }
+
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl("login");
+    this.navigatePage("login");
   }
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
+
   }
 }

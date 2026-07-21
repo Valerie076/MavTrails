@@ -3,10 +3,9 @@
     <ion-title>
       poopybbutt
     </ion-title>
+    <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
-    <ion-button routerLink="/main-map">
-  Main Map
-</ion-button>
+    <ion-button routerLink="/main-map">Main Map</ion-button>
 
   </ion-toolbar>
 </ion-header>
@@ -32,6 +31,7 @@
       <div class="ion-padding" slot="content">Wooded</div>
       <div class="ion-padding" slot="content">Water</div>
       <div class="ion-padding" slot="content">Houses</div>
+      <div class="ion-padding" slot="content">@Canva fix this picture</div>
     </ion-accordion>
     <ion-accordion value="second">
       <ion-item slot="header" color="light">
@@ -100,5 +100,13 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
+
+  @for(trail of trails; track $index) {
+    <ion-item style="text-align: center;">
+      <ion-button (click)="openTrailDetails(trail)" expand="block">
+        {{trail.location}}
+      </ion-button>
+    </ion-item>
+  }
 
 </ion-content>
