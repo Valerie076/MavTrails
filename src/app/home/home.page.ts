@@ -4,6 +4,11 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
+import { TrailService } from '../services/trail-service';
+import { Trail } from '../models/trail';
+import { Music } from '../models/music';
+import { MusicType } from '../enums/music-type';
+import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { TrailModalPage } from '../trail-modal/trail-modal.page';
 
@@ -14,26 +19,46 @@ import { TrailModalPage } from '../trail-modal/trail-modal.page';
   standalone: false,
 })
 export class HomePage {
+  trailSubscription?: Subscription;
+
+  trails?: Trail[];
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private trailService: TrailService,
     private modalCtrl: ModalController
   ) { }
 
-async openTrailModal() {
-  const modal = await this.modalCtrl.create({
-    component: TrailModalPage
-  });
+  ionViewWillEnter() {
+    this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
+      this.trails = data
+    })
+  }
 
-  await modal.present();
-}
+  openTrailDetails(trail: Trail) {
+
+    this.trailService.saveTrail(trail);
+
+    this.trailService.activeTrail = trail;
+
+    this.navigatePage("details");
+  }
+
+  async openTrailModal() {
+    const modal = await this.modalCtrl.create({
+      component: TrailModalPage
+    });
+
+    await modal.present();
+  }
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl("login");
+    this.navigatePage("login");
   }
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
+
   }
 }

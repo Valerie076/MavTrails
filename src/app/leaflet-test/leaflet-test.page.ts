@@ -29,8 +29,7 @@ export class LeafletTestPage implements OnInit {
       .openPopup();
 
     const latlngs: L.LatLngExpression[] = [
-      [41.248867, -96.015685
-      ],
+      [41.248867, -96.015685],
       [41.249723, -96.015048],
       [41.250348, -96.014298],
       [41.25133, -96.013869],
