@@ -5,7 +5,8 @@
   <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+
+  <!-- For ratings make sure to average all ratings and have final answer be output -->
 
   <ion-content>
     <ion-grid>
@@ -17,7 +18,7 @@
               <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
             </div>
             <br>
-            Rating: {{detailsOne.ratings}}
+            Rating: {{trail.ratings}}
           </div>
         </ion-col>
 
@@ -29,12 +30,12 @@
       <ion-row>
         <ion-toolbar>
           <ion-title size="large">Difficulty</ion-title>
-          {{detailsOne.difficulty}}
+          {{trail.difficulty}}
         </ion-toolbar>
 
         <ion-toolbar>
           <ion-title size="large">Features</ion-title>
-          {{detailsOne.features}}
+          {{trail.features}}
         </ion-toolbar>
 
         <ion-toolbar>
