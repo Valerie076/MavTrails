@@ -10,7 +10,7 @@ import { Music } from '../models/music';
 import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
-import { TrailModalPage } from '../trail-modal/trail-modal.page';
+import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
 
 @Component({
   selector: 'app-home',

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ModalService } from '../services/modal-service';
 import { TrailModalPage } from '../trail-modal/trail-modal.page';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-main-map',
@@ -26,7 +27,8 @@ export class MainMapPage implements OnInit {
   constructor(
     private trailService: TrailService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private authService: AuthService
   ) { }
 
   ionViewWillEnter() {
@@ -147,6 +149,11 @@ export class MainMapPage implements OnInit {
         []
       )
     );
+  }
+
+  async logout() {
+    await this.authService.logout();
+    this.navigatePage("login");
   }
 }
 
