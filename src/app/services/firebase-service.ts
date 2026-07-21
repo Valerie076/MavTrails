@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,9 +15,9 @@ export class FirebaseService {
   * creates (or updates) a single document in firebase db
   **/
  // TODO - Make it add Doc
-  async createDoc<T extends Object>(objectToStore: T, path: string) {
-    let documentRef: DocumentReference = doc(this.firestore, path);
-    await setDoc(documentRef, JSON.parse(JSON.stringify(objectToStore)))
+  async createDoc<T extends Object>(objectToStore: T, collectionName: string) {
+  let collectionRef: CollectionReference = collection(this.firestore, collectionName)
+  await addDoc(collectionRef, JSON.parse(JSON.stringify(objectToStore)))
   }
   /**
   * Read

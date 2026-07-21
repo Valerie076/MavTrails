@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LeafletTestPage } from './leaflet-test.page';
+import { MainMapPage } from './main-map.page';
 
-describe('LeafletTestPage', () => {
-  let component: LeafletTestPage;
-  let fixture: ComponentFixture<LeafletTestPage>;
+describe('MainMapPage', () => {
+  let component: MainMapPage;
+  let fixture: ComponentFixture<MainMapPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeafletTestPage);
+    fixture = TestBed.createComponent(MainMapPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
