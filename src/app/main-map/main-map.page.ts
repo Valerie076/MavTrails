@@ -4,6 +4,7 @@ import { TrailService } from '../services/trail-service';
 import { Trail } from '../models/trail';
 import { Coordinate } from '../models/coordinate';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-map',
@@ -21,7 +22,8 @@ export class MainMapPage implements OnInit {
   globalNewPath: L.LatLngExpression[] = []; // Place for the path to be saved.
 
   constructor(
-    private trailService: TrailService
+    private trailService: TrailService,
+    private router: Router
   ) { }
 
   ionViewWillEnter() {
@@ -84,6 +86,10 @@ export class MainMapPage implements OnInit {
         opacity: 0.7
       }).addTo(this.map);
     }
+  }
+
+  navigatePage(path: string) {
+    this.router.navigateByUrl(path)
   }
 
   onClick(e: L.LeafletMouseEvent, newPath: L.LatLngExpression[]) {
