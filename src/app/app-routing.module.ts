@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard'
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([""])
-const redirectLoggedInToHome = () => redirectLoggedInTo(["home"])
+const redirectLoggedInToHome = () => redirectLoggedInTo(["main-map"])
 
 const routes: Routes = [
   {
@@ -32,8 +32,11 @@ const routes: Routes = [
   {
     path: 'main-map',
     loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
+  },
+  {
+    path: 'main-map',
+    loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
   }
-
 ];
 
 @NgModule({
