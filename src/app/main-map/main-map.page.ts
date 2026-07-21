@@ -6,8 +6,8 @@ import { Coordinate } from '../models/coordinate';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ModalService } from '../services/modal-service';
-import { TrailModalPage } from '../trail-modal/trail-modal.page';
 import { AuthService } from '../services/auth-service';
+import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
 
 @Component({
   selector: 'app-main-map',
