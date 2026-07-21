@@ -9,6 +9,8 @@ import { Trail } from '../models/trail';
 import { Music } from '../models/music';
 import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { TrailModalPage } from '../trail-modal/trail-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +26,8 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private trailService: TrailService
+    private trailService: TrailService,
+    private modalCtrl: ModalController
   ) { }
 
   ionViewWillEnter() {
@@ -34,14 +37,21 @@ export class HomePage {
   }
 
   openTrailDetails(trail: Trail) {
-    
+
     this.trailService.saveTrail(trail);
-    
+
     this.trailService.activeTrail = trail;
-    
+
     this.navigatePage("details");
   }
 
+  async openTrailModal() {
+    const modal = await this.modalCtrl.create({
+      component: TrailModalPage
+    });
+
+    await modal.present();
+  }
   async logout() {
     await this.authService.logout();
     this.navigatePage("login");
@@ -49,6 +59,6 @@ export class HomePage {
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
-    
+
   }
 }

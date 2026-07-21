@@ -10,7 +10,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
+<ion-button (click)="navigatePage('details')">Details</ion-button>
+<ion-button (click)="openTrailModal()">
+  Add Trail
+</ion-button>
+
+<ion-searchbar placeholder="Search for a trail"></ion-searchbar>
 
 <ion-content>
 
