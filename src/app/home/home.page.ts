@@ -25,6 +25,8 @@ export class HomePage {
 
   trails?: Trail[];
 
+  public results: Trail[] = [];
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -34,6 +36,8 @@ export class HomePage {
   ionViewWillEnter() {
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
       this.trails = data
+      console.log(this.trails)
+      this.results = [...this.trails];
     })
   }
 
@@ -51,5 +55,11 @@ export class HomePage {
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
 
+  }
+
+  handleInput(event: Event) {
+    const target = event.target as HTMLIonSearchbarElement;
+    const query = target.value?.toLowerCase() || '';
+    this.results = this.trails!.filter((d) => d.name.toLowerCase().includes(query));
   }
 }

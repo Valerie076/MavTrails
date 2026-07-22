@@ -14,92 +14,40 @@
 
 <ion-content>
 
-  <ion-accordion-group>
-    <ion-accordion value="first">
-      <ion-item slot="header" color="light">
-        <ion-label>Features</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Hills</div>
-      <div class="ion-padding" slot="content">Plains</div>
-      <div class="ion-padding" slot="content">Wooded</div>
-      <div class="ion-padding" slot="content">Water</div>
-      <div class="ion-padding" slot="content">Houses</div>
-      <div class="ion-padding" slot="content">@Canva fix this picture</div>
-    </ion-accordion>
-    <ion-accordion value="second">
-      <ion-item slot="header" color="light">
-        <ion-label>Difficulty</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Difficult</div>
-      <div class="ion-padding" slot="content">Hard</div>
-      <div class="ion-padding" slot="content">Medium</div>
-      <div class="ion-padding" slot="content">Easy</div>
-      <div class="ion-padding" slot="content">Very Easy</div>
-    </ion-accordion>
-    <ion-accordion value="third">
-      <ion-item slot="header" color="light">
-        <ion-label>Rating</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-row>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png">
-          </ion-img><ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-        </ion-row>
-      </div>
+  <ion-item>
+    <ion-select label="Filter by Features" placeholder="Selected Features">
+      <ion-select-option value="hills">Hills</ion-select-option>
+      <ion-select-option value="plains">Plains</ion-select-option>
+      <ion-select-option value="wooded">Wooded</ion-select-option>
+      <ion-select-option value="water">Water</ion-select-option>
+      <ion-select-option value="houses">Houses</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice">
+      <ion-select-option value="hard">Hard</ion-select-option>
+      <ion-select-option value="medium">Medium</ion-select-option>
+      <ion-select-option value="easy">Easy</ion-select-option>
+      <ion-select-option value="very easy">Very Easy</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select label="Filter by Ratings" placeholder="Choose Minimum Rating">
+      <ion-select-option value="5">5 Stars Only</ion-select-option>
+      <ion-select-option value="4">4 Stars and Above</ion-select-option>
+      <ion-select-option value="3">3 Stars and Above</ion-select-option>
+      <ion-select-option value="2">2 Stars and Above</ion-select-option>
+      <ion-select-option value="1">All Rated Trails</ion-select-option>
+    </ion-select>
+  </ion-item>
+ 
 
-      <div class="ion-padding" slot="content">
-        <ion-row>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png">
-          </ion-img><ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-        </ion-row>
-      </div>
-      <div class="ion-padding" slot="content">
-        <ion-row>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png">
-          </ion-img><ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-        </ion-row>
-      </div>
-      <div class="ion-padding" slot="content">
-        <ion-row>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png">
-          </ion-img><ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-        </ion-row>
-      </div>
-      <div class="ion-padding" slot="content">
-        <ion-row>
-          <ion-img class="star-one"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Yellow_Star_with_rounded_edges.svg/3840px-Yellow_Star_with_rounded_edges.svg.png"></ion-img>
-        </ion-row>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
-
-  @for(trail of trails; track $index) {
-    <ion-item style="text-align: center;">
-      <ion-button (click)="openTrailDetails(trail)" expand="block">
-        {{trail.name}}
-      </ion-button>
-    </ion-item>
+  @for(trail of results; track $index) {
+  <ion-item style="text-align: center;">
+    <ion-button (click)="openTrailDetails(trail)" expand="block">
+      {{trail.name}}
+    </ion-button>
+  </ion-item>
   }
 
 </ion-content>
