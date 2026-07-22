@@ -26,6 +26,8 @@ export class HomePage {
 
   trails?: Trail[];
 
+  public results: Trail[] = [];
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -35,22 +37,24 @@ export class HomePage {
   ) { }
 
   async openMediaModal() {
-  const modal = await this.modalCtrl.create({
-    component: MediaModalPage
-  });
+    const modal = await this.modalCtrl.create({
+      component: MediaModalPage
+    });
 
-  await modal.present();
+    await modal.present();
 
-}
-async openTrailModal() {
-  const modal = await this.modalCtrl.create({
-    component: TrailModalPage
-  });
-}
-    
+  }
+  async openTrailModal() {
+    const modal = await this.modalCtrl.create({
+      component: TrailModalPage
+    });
+  }
+
   ionViewWillEnter() {
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
       this.trails = data
+      console.log(this.trails)
+      this.results = [...this.trails];
     })
   }
 
@@ -68,5 +72,11 @@ async openTrailModal() {
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
 
+  }
+
+  handleInput(event: Event) {
+    const target = event.target as HTMLIonSearchbarElement;
+    const query = target.value?.toLowerCase() || '';
+    this.results = this.trails!.filter((d) => d.name.toLowerCase().includes(query));
   }
 }
