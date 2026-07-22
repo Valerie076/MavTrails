@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Media</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-input
+      label="Title"
+      placeholder="Enter media title">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-select
+    label="Media Type"
+    placeholder="Choose media type">
+
+    <ion-select-option value="photo">
+      Photo
+    </ion-select-option>
+
+    <ion-select-option value="music">
+      Music
+    </ion-select-option>
+
+    <ion-select-option value="podcast">
+      Podcast
+    </ion-select-option>
+
+    <ion-select-option value="audiobook">
+      Audiobook
+    </ion-select-option>
+
+  </ion-select>
+</ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Media URL"
+      placeholder="Paste image/video link">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea
+      label="Description"
+      placeholder="Write a description">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block">
+    Save Media
+  </ion-button>
+
+</ion-content>
