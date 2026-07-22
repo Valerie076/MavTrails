@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Hello, ____</ion-title>
+    <ion-button slot="end" (click)="navigateModal()">Update Profile</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -37,6 +38,8 @@
               Email:
               <br>
               Phone:
+              <br>
+              Username:
             </strong>
             <p><br>Miscellaneous </p>
           </ion-card-content>
@@ -45,7 +48,6 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-button (click)="navigateModal()">Update Profile</ion-button>
 <ion-button (click)="navigatePage('home')">Home</ion-button>
 
- <!-- NOTE: Once we get the firebase stuff and everything can be applied to each page we can do mustache notation -->
+<!-- NOTE: Once we get the firebase stuff and everything can be applied to each page we can do mustache notation -->
