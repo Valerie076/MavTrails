@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Trail } from '../models/trail';
 import { User } from '../models/user';
-import { Music } from '../models/music';
-import { Podcast } from '../models/podcast';
-import { Audiobook } from '../models/audiobook';
-import { MusicType } from '../enums/music-type';
+import { MediaType } from '../enums/media-type';
 import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
+import { ModalService } from '../services/modal-service';
+import { MediaModalPage } from '../components/media-modal/media-modal.page';
 
 @Component({
   selector: 'app-details',
@@ -18,20 +17,13 @@ import { Router } from '@angular/router';
 export class DetailsPage implements OnInit {
   detailsSubscription?: Subscription;
   trail!: Trail
-
-  // music: Music[] = [
-  //   new Music("uhseifah", "Music Title", "Artist", MusicType.Playlist)
-  // ];
-  // podcasts!: Podcast[];
-  // audiobook!: Audiobook[];
   
-  // detailsOne: Trail = new Trail("", 15, "Medium", [4, 3, 2], "blah blah blah", 40, "Fun", ["Lake", "Houses", "Gravel"], [], [], [])
-
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg")
 
   constructor(
     private trailService: TrailService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -40,5 +32,9 @@ export class DetailsPage implements OnInit {
 
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
+  }
+
+  openMediaModal() {
+    this.modalService.createModal(MediaModalPage);
   }
 }

@@ -35,9 +35,7 @@ export class TrailService {
               trail.time,
               trail.description,
               trail.features,
-              trail.music,
-              trail.podcasts,
-              trail.audiobooks,
+              trail.media,
               trail.id
             ))
           //update BehaviorSubject to have newest Firebase values

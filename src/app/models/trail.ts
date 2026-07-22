@@ -1,7 +1,5 @@
-import { Audiobook } from "./audiobook"
 import { Coordinate } from "./coordinate"
-import { Music } from "./music"
-import { Podcast } from "./podcast"
+import { Media } from "./media"
 
 export class Trail {
     id?: string = ""
@@ -14,9 +12,7 @@ export class Trail {
     time: number = 0
     description: string = ""
     features: string[] = [""]
-    music: Music[] = [];
-    podcasts: Podcast[] = [];
-    audiobooks: Audiobook[] = [];
+    media: Media[] = [];
     uid: string = "";
 
     constructor(
@@ -29,9 +25,7 @@ export class Trail {
         timeIn: number,
         descriptionIn: string,
         featuresIn: string[],
-        musicIn: Music[],
-        podcastsIn: Podcast[],
-        audiobooksIn: Audiobook[],
+        mediaIn: Media[],
         uid: string,
         id?: string
     ) {
@@ -44,9 +38,7 @@ export class Trail {
         this.time = timeIn
         this.description = descriptionIn
         this.features = featuresIn
-        this.music = musicIn;
-        this.podcasts = podcastsIn;
-        this.audiobooks = audiobooksIn;
+        this.media = mediaIn;
         this.uid = uid;
         this.id = id;
     }

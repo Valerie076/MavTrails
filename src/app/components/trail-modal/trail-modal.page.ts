@@ -42,8 +42,6 @@ export class TrailModalPage implements OnInit {
       this.description,
       [],
       [],
-      [],
-      [],
       this.userService.activeUser.id
     )
     this.trailService.saveTrailPath(trailNoPath);
