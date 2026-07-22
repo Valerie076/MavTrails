@@ -55,8 +55,6 @@ async openTrailModal() {
   }
 
   openTrailDetails(trail: Trail) {
-    this.trailService.saveTrail(trail);
-
     this.trailService.activeTrail = trail;
 
     this.navigatePage("details");
