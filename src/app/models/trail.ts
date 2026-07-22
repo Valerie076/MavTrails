@@ -17,6 +17,7 @@ export class Trail {
     music: Music[] = [];
     podcasts: Podcast[] = [];
     audiobooks: Audiobook[] = [];
+    uid: string = "";
 
     constructor(
         path: Coordinate[],
@@ -31,6 +32,7 @@ export class Trail {
         musicIn: Music[],
         podcastsIn: Podcast[],
         audiobooksIn: Audiobook[],
+        uid: string,
         id?: string
     ) {
         this.path = path
@@ -45,7 +47,8 @@ export class Trail {
         this.music = musicIn;
         this.podcasts = podcastsIn;
         this.audiobooks = audiobooksIn;
-        this.id = id
+        this.uid = uid;
+        this.id = id;
     }
 
 }

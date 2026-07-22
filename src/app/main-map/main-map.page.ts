@@ -70,8 +70,6 @@ export class MainMapPage implements OnInit {
         opacity: 0.7
       }).addTo(this.map);
 
-      console.log(trail);
-
       L.marker(latlng[0]).addTo(this.map)
           .bindPopup(trail.name)
           .openPopup();
@@ -124,7 +122,6 @@ export class MainMapPage implements OnInit {
     }
 
     console.log(this.trailService.activeTrail);
-    
 
     L.marker(this.trailService.newTrailPath[0]).addTo(this.map)
         .bindPopup(this.trailService.activeTrail.name)
