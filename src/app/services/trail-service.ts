@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { FirebaseService } from './firebase-service';
 import { Trail } from '../models/trail';
+import { LatLngExpression } from 'leaflet';
+import { Coordinate } from '../models/coordinate';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrailService {
   activeTrail!: Trail
+
+  newTrailPath: LatLngExpression[] = [];
 
   private _trails: BehaviorSubject<Trail[]> = new BehaviorSubject([] as
     Trail[])
@@ -23,6 +27,7 @@ export class TrailService {
           let trails = res.map((trail: any) => new
             Trail(
               trail.path,
+              trail.name,
               trail.length,
               trail.difficulty,
               trail.ratings,
@@ -58,5 +63,21 @@ export class TrailService {
   }
   ngOnDestroy() {
     this.firebaseObservable?.unsubscribe()
+  }
+
+  saveTrailPath(trailNoPath: Trail) {
+    let coords: Coordinate[] = [];
+
+    for (let coord of this.newTrailPath) {
+      let coordNum = coord as number[];
+
+      coords.push(
+        new Coordinate(coordNum[0], coordNum[1])
+      );
+    }
+
+    trailNoPath.path = coords;
+
+    this.saveTrail(trailNoPath);
   }
 }

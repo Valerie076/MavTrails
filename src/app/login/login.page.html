@@ -17,6 +17,25 @@
   <ion-item>
     <ion-input label="Password:" placeholder="enter password here" type="password" [(ngModel)]="passwordIn"></ion-input>
   </ion-item>
-  <ion-button (click)="login()">Sign In</ion-button>
-  <ion-button (click)="presentRegister()">Register</ion-button>
+
+  <ion-grid>
+    <ion-row>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <!-- <ion-col>
+      </ion-col> -->
+      <ion-col>
+        <ion-button size = large (click)="login()">Sign In</ion-button>
+        <ion-row>
+        </ion-row>
+        <ion-button size = large (click)="presentRegister()">Register</ion-button>
+      </ion-col>
+      <!-- <ion-col>
+      </ion-col> -->
+    </ion-row>
+
+  </ion-grid>
+
+
+
 </ion-content>

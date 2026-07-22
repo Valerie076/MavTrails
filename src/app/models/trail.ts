@@ -5,6 +5,7 @@ import { Podcast } from "./podcast"
 
 export class Trail {
     id?: string = ""
+    name: string = ""
     path: Coordinate[] = []
     length: number = 0
     difficulty: string = ""
@@ -19,6 +20,7 @@ export class Trail {
 
     constructor(
         path: Coordinate[],
+        name: string,
         lengthIn: number,
         difficultyIn: string,
         ratingsIn: number[],
@@ -32,6 +34,7 @@ export class Trail {
         id?: string
     ) {
         this.path = path
+        this.name = name
         this.length = lengthIn
         this.difficulty = difficultyIn
         this.ratings = ratingsIn
