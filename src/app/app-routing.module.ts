@@ -36,7 +36,11 @@ const routes: Routes = [
   {
     path: 'main-map',
     loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
+  },  {
+    path: 'rating-modal',
+    loadChildren: () => import('./rating-modal/rating-modal.module').then( m => m.RatingModalPageModule)
   }
+
 ];
 
 @NgModule({
