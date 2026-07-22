@@ -24,7 +24,7 @@
 <ion-content>
 
   <ion-item>
-    <ion-select label="Filter by Features" placeholder="Selected Features">
+    <ion-select label="Filter by Features" placeholder="Selected Features" (ionChange)="onFeatureChange($event)">
       <ion-select-option value="hills">Hills</ion-select-option>
       <ion-select-option value="plains">Plains</ion-select-option>
       <ion-select-option value="wooded">Wooded</ion-select-option>
@@ -33,7 +33,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice">
+    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice" (ionChange)="onDifficultyChange($event)">
       <ion-select-option value="hard">Hard</ion-select-option>
       <ion-select-option value="medium">Medium</ion-select-option>
       <ion-select-option value="easy">Easy</ion-select-option>
