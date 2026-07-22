@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-update-profile',
-  templateUrl: './update-profile.component.html',
-  styleUrls: ['./update-profile.component.scss'],
+  templateUrl: './update-profile-modal.component.html',
+  styleUrls: ['./update-profile-modal.component.scss'],
   standalone: false,
 })
-export class UpdateProfileComponent  implements OnInit {
+export class UpdateProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
 
-  ngOnInit() {}
+  ) { }
+
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
+
+  ngOnInit() { }
 
 }
