@@ -27,6 +27,7 @@ export class TrailService {
           let trails = res.map((trail: any) => new
             Trail(
               trail.path,
+              trail.name,
               trail.length,
               trail.difficulty,
               trail.ratings,
@@ -64,7 +65,7 @@ export class TrailService {
     this.firebaseObservable?.unsubscribe()
   }
 
-  saveTrailPath() {
+  saveTrailPath(trailNoPath: Trail) {
     let coords: Coordinate[] = [];
 
     for (let coord of this.newTrailPath) {
@@ -75,20 +76,8 @@ export class TrailService {
       );
     }
 
-    this.saveTrail(
-      new Trail(
-        coords,
-        0,
-        "insert difficulty",
-        [],
-        "location",
-        0,
-        "Description",
-        [],
-        [],
-        [],
-        []
-      )
-    );
+    trailNoPath.path = coords;
+
+    this.saveTrail(trailNoPath);
   }
 }
