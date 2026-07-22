@@ -7,6 +7,14 @@
     <ion-button slot="end" (click)="closeModal()">
       Close
     </ion-button>
-
   </ion-toolbar>
 </ion-header>
+
+
+<ion-card>
+  <ion-input [(ngModel)]="updateEmailIn" label="Email:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="updatePhoneIn" label="Phone:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="updateUsernameIn" label="Username:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="updatePasswordIn" label="Password:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="updatePicIn" label="Profile Pic:" placeholder="enter here"></ion-input>
+</ion-card>
