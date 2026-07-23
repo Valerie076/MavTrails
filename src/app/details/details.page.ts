@@ -7,6 +7,7 @@ import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
 import { ModalService } from '../services/modal-service';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
+import { RatingModalPage } from '../rating-modal/rating-modal.page';
 
 @Component({
   selector: 'app-details',
@@ -36,5 +37,9 @@ export class DetailsPage implements OnInit {
 
   openMediaModal() {
     this.modalService.createModal(MediaModalPage);
+  }
+
+  openRatingModal() {
+    this.modalService.createModal(RatingModalPage);
   }
 }
