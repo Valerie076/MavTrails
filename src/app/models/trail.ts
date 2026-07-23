@@ -13,7 +13,7 @@ export class Trail {
     description: string = ""
     features: string[] = [""]
     media: Media[] = [];
-    uid: string = "";
+    uid?: string = "";
 
     constructor(
         path: Coordinate[],
@@ -26,7 +26,7 @@ export class Trail {
         descriptionIn: string,
         featuresIn: string[],
         mediaIn: Media[],
-        uid: string,
+        uid?: string,
         id?: string
     ) {
         this.path = path

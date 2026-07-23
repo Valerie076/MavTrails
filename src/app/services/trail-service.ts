@@ -4,6 +4,8 @@ import { FirebaseService } from './firebase-service';
 import { Trail } from '../models/trail';
 import { LatLngExpression } from 'leaflet';
 import { Coordinate } from '../models/coordinate';
+import { UserService } from './user-service';
+import { AuthService } from './auth-service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,10 @@ export class TrailService {
   private _trails: BehaviorSubject<Trail[]> = new BehaviorSubject([] as
     Trail[])
   private firebaseObservable?: Subscription
-  constructor(private firebaseService: FirebaseService) {
+  constructor(
+    private firebaseService: FirebaseService,
+    private authService: AuthService
+  ) {
     this.getData()
   }
   getData() {
@@ -36,6 +41,7 @@ export class TrailService {
               trail.description,
               trail.features,
               trail.media,
+              trail.uid,
               trail.id
             ))
           //update BehaviorSubject to have newest Firebase values
@@ -51,10 +57,18 @@ export class TrailService {
     return this._trails.asObservable()
   }
   async saveTrail(trail: Trail) {
-
     await this.firebaseService.createDoc(trail, `trails`)
     console.log("save trail");
     
+  }
+  async updateTrail(trail: Trail) {
+    console.log(this.trails);
+    
+    console.log(" this next one vvvvvv is the one to update");
+    console.log(trail);
+    
+    
+    await this.firebaseService.updateDoc(trail, `trails/${trail.id}`);
   }
   async deleteTrail(trail: Trail) {
     await this.firebaseService.deleteDoc(`trails/${trail.id}`)
@@ -75,6 +89,7 @@ export class TrailService {
     }
 
     trailNoPath.path = coords;
+    // trailNoPath.uid = 
 
     this.saveTrail(trailNoPath);
   }

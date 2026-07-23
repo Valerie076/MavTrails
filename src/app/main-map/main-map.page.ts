@@ -40,7 +40,7 @@ export class MainMapPage implements OnInit {
     }).addTo(this.map);
 
     L.marker([41.2516656, -96.0097386]).addTo(this.map)
-      .bindPopup('New Recommendation: <br> Elmwood Park Trail')
+      .bindPopup('@Canva fix this image <br> ')
       .openPopup();
 
     // FETCH TASKS
@@ -120,12 +120,10 @@ export class MainMapPage implements OnInit {
     if (this.trailService.newTrailPath.length > 0) {
       this.openTrailModal();
     }
-
-    console.log(this.trailService.activeTrail);
-
-    L.marker(this.trailService.newTrailPath[0]).addTo(this.map)
-        .bindPopup(this.trailService.activeTrail.name)
-        .openPopup();
+    
+    // L.marker(this.trailService.newTrailPath[0]).addTo(this.map)
+    //     .bindPopup(this.trailService.activeTrail.name)
+    //     .openPopup();
   }
 
   async openTrailModal() {
