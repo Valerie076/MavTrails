@@ -8,6 +8,8 @@ import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
+import { RatingModalPage } from '../rating-modal/rating-modal.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -31,7 +33,8 @@ export class DetailsPage implements OnInit {
 
   constructor(
     private trailService: TrailService,
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -41,4 +44,16 @@ export class DetailsPage implements OnInit {
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
   }
+
+  async openRatingModal() {
+  
+    const modal = await this.modalCtrl.create({
+      component: RatingModalPage
+    });
+  
+    await modal.present();
+  
+  }
+
+
 }
