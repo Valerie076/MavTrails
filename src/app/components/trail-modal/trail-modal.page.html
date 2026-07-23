@@ -15,32 +15,43 @@
 <ion-content>
 
   <ion-item>
-    <ion-input 
-      label="Trail Name"
-      placeholder="Enter trail name"
-      [(ngModel)]="name">
+    <ion-input label="Trail Name" placeholder="Enter trail name" [(ngModel)]="name">
     </ion-input>
   </ion-item>
 
 
   <ion-item>
-    <ion-input 
-      label="Location"
-      placeholder="Enter location"
-      [(ngModel)]="location">
+    <ion-input label="Location" placeholder="Enter location" [(ngModel)]="location">
     </ion-input>
   </ion-item>
 
 
   <ion-item>
-    <ion-textarea
-      label="Description"
-      placeholder="Describe the trail"
-      [(ngModel)]="description">
+    <ion-textarea label="Description" placeholder="Describe the trail" [(ngModel)]="description">
     </ion-textarea>
   </ion-item>
 
+  <ion-item>
+    <ion-textarea label="Difficulty" placeholder="Add Difficulty Rating" [(ngModel)]="difficulty">
+    </ion-textarea>
+    (very easy, easy, medium, or hard)
+  </ion-item>
 
+  <ion-item>
+    <ion-textarea label="Length" placeholder="Add Trail Length" [(ngModel)]="length">
+    </ion-textarea>
+    (in miles)
+  </ion-item>
+
+
+
+  <ion-item>
+    <ion-textarea label="Time" placeholder="Add Expected Walk Time" [(ngModel)]="time">
+    </ion-textarea>
+    (in minutes)
+  </ion-item>
+
+  <!-- length, difficulty, time -->
   <ion-button expand="block" (click)="saveTrail()">
     Save Trail
   </ion-button>
