@@ -9,6 +9,10 @@ import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
 
+import { register } from 'swiper/element/bundle';
+
+register();
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
