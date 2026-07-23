@@ -15,6 +15,9 @@ export class TrailModalPage implements OnInit {
   name: string = "";
   location: string = "";
   description: string = "";
+  length!: number
+  difficulty: string = ""
+  time!: number
 
   constructor(
     private modalCtrl: ModalController,
@@ -32,11 +35,11 @@ export class TrailModalPage implements OnInit {
     let trailNoPath: Trail = new Trail(
       [],
       this.name,
-      0,
-      "",
+      this.length,
+      this.difficulty,
       [],
       this.location,
-      0,
+      this.time,
       this.description,
       [],
       [],
