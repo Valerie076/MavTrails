@@ -11,7 +11,7 @@
 <ion-content>
 
 
-  <div class="details"> Details </div>
+  <div class="details">{{trail.name}} Details </div>
 
   <ion-grid>
     <ion-col size="6">
@@ -30,14 +30,35 @@
 
     <ion-row>
       <ion-col>
-        <ion-title size="large">Difficulty</ion-title>
-        {{trail.difficulty}}
+        <ion-title size="large">Location</ion-title>
+        {{trail.location}}
       </ion-col>
 
       <ion-col>
         <ion-title size="large">Features</ion-title>
         {{trail.features}}
       </ion-col>
+
+      <ion-col>
+        <ion-title size="large">Description</ion-title>
+        {{trail.description}}
+      </ion-col>
+
+      <ion-col>
+        <ion-title size="large">Difficulty</ion-title>
+        {{trail.difficulty}}
+      </ion-col>
+
+      <ion-col>
+        <ion-title size="large">Length</ion-title>
+        {{trail.length}} miles
+      </ion-col>
+
+      <ion-col>
+        <ion-title size="large">Walk Time</ion-title>
+        {{trail.time}} minutes
+      </ion-col>
+
 
       <ion-col>
         <ion-title size="large">Media</ion-title>

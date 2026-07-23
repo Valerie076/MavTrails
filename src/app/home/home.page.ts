@@ -13,7 +13,7 @@ import { Music } from '../models/music';
 import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
-import { RatingModalPage } from '../rating-modal/rating-modal.page';
+import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
 
 
 @Component({

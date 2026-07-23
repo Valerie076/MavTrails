@@ -8,7 +8,7 @@ import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
-import { RatingModalPage } from '../rating-modal/rating-modal.page';
+import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
 import { ModalController } from '@ionic/angular';
 
 @Component({
