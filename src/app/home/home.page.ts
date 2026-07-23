@@ -13,6 +13,7 @@ import { Music } from '../models/music';
 import { MusicType } from '../enums/music-type';
 import { Subscription } from 'rxjs';
 import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
+import { RatingModalPage } from '../rating-modal/rating-modal.page';
 
 
 @Component({
@@ -36,6 +37,16 @@ export class HomePage {
     private trailService: TrailService
   ) { }
 
+
+  async openRatingModal() {
+
+  const modal = await this.modalCtrl.create({
+    component: RatingModalPage
+  });
+
+  await modal.present();
+
+}
   async openMediaModal() {
     const modal = await this.modalCtrl.create({
       component: MediaModalPage
@@ -79,4 +90,28 @@ export class HomePage {
     const query = target.value?.toLowerCase() || '';
     this.results = this.trails!.filter((d) => d.name.toLowerCase().includes(query));
   }
+
+  onFeatureChange(event: any) {
+  // Capture the selected value from the event detail
+  const selectedValue = event.detail.value; 
+  
+  console.log('User selected:', selectedValue);
+  this.filterByFeatures(selectedValue);
+}
+
+filterByFeatures(value: string) {
+  this.results = this.trails!.filter((d) => d.features.includes(value))
+}
+  
+ onDifficultyChange(event: any) {
+  // Capture the selected value from the event detail
+  const selectedValue = event.detail.value; 
+  
+  console.log('User selected:', selectedValue);
+  this.filterByDifficulty(selectedValue);
+}
+
+filterByDifficulty(value: string) {
+  this.results = this.trails!.filter((d) => d.difficulty.includes(value))
+}
 }
