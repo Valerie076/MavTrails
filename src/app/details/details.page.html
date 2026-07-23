@@ -10,24 +10,25 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div>
-          Posted by: {{postedBy.username}}
-          <div class="circle-picture">
-            <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
-          </div>
-          <br>
-          Rating: {{trail.ratings}}
+    <ion-col size="6">
+      <ion-col></ion-col>
+      <div>
+        Posted by: {{postedBy.username}}
+        <div class="circle-picture">
+          <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
         </div>
-      </ion-col>
+        <br>
+        Rating: {{trail.ratings}}
+      </div>
+    </ion-col>
 
-      <ion-col class="details">
+    <ion-grid>
+      <ion-col size="6" class="details">
         <ion-col class="ion text ion-text-center"></ion-col>
         <ion-col></ion-col>
         <div> Details </div>
       </ion-col>
-    </ion-row>
+    </ion-grid>
 
     <ion-row>
       <ion-toolbar>
@@ -47,12 +48,50 @@
 
       <ion-toolbar>
         <ion-title size="large">Media</ion-title>
-        It's own thing
+
+        <ion-card>
+          <ion-card-title>
+            Music
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Music 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-title>
+            Podcasts
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Podcast 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-title>
+            Audiobook
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Audiobook 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
       </ion-toolbar>
     </ion-row>
 
   </ion-grid>
 
+  <ion-button (click)="openMediaModal()">
+    Add Media
+  </ion-button>
+
+  <ion-button (click)="openRatingModal()">Rate Trail</ion-button>
   <ion-button (click)="navigatePage('home')">Home</ion-button>
 
   <swiper-container>
