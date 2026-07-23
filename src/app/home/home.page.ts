@@ -38,23 +38,7 @@ export class HomePage {
   ) { }
 
 
-  async openRatingModal() {
-
-  const modal = await this.modalCtrl.create({
-    component: RatingModalPage
-  });
-
-  await modal.present();
-
-}
-  async openMediaModal() {
-    const modal = await this.modalCtrl.create({
-      component: MediaModalPage
-    });
-
-    await modal.present();
-
-  }
+  
   async openTrailModal() {
     const modal = await this.modalCtrl.create({
       component: TrailModalPage
@@ -68,6 +52,15 @@ export class HomePage {
       this.results = [...this.trails];
     })
   }
+
+  async openMediaModal() {
+      const modal = await this.modalCtrl.create({
+        component: MediaModalPage
+      });
+  
+      await modal.present();
+  
+    }
 
   openTrailDetails(trail: Trail) {
     this.trailService.activeTrail = trail;
@@ -90,4 +83,28 @@ export class HomePage {
     const query = target.value?.toLowerCase() || '';
     this.results = this.trails!.filter((d) => d.name.toLowerCase().includes(query));
   }
+
+  onFeatureChange(event: any) {
+  // Capture the selected value from the event detail
+  const selectedValue = event.detail.value; 
+  
+  console.log('User selected:', selectedValue);
+  this.filterByFeatures(selectedValue);
+}
+
+filterByFeatures(value: string) {
+  this.results = this.trails!.filter((d) => d.features.includes(value))
+}
+  
+ onDifficultyChange(event: any) {
+  // Capture the selected value from the event detail
+  const selectedValue = event.detail.value; 
+  
+  console.log('User selected:', selectedValue);
+  this.filterByDifficulty(selectedValue);
+}
+
+filterByDifficulty(value: string) {
+  this.results = this.trails!.filter((d) => d.difficulty.includes(value))
+}
 }
