@@ -38,23 +38,7 @@ export class HomePage {
   ) { }
 
 
-  async openRatingModal() {
-
-  const modal = await this.modalCtrl.create({
-    component: RatingModalPage
-  });
-
-  await modal.present();
-
-}
-  async openMediaModal() {
-    const modal = await this.modalCtrl.create({
-      component: MediaModalPage
-    });
-
-    await modal.present();
-
-  }
+  
   async openTrailModal() {
     const modal = await this.modalCtrl.create({
       component: TrailModalPage
@@ -68,6 +52,15 @@ export class HomePage {
       this.results = [...this.trails];
     })
   }
+
+  async openMediaModal() {
+      const modal = await this.modalCtrl.create({
+        component: MediaModalPage
+      });
+  
+      await modal.present();
+  
+    }
 
   openTrailDetails(trail: Trail) {
     this.trailService.activeTrail = trail;
