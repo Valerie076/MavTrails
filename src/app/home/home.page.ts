@@ -9,8 +9,7 @@ import { MediaModalPage } from '../components/media-modal/media-modal.page';
 import { ModalService } from '../services/modal-service';
 import { TrailService } from '../services/trail-service';
 import { Trail } from '../models/trail';
-import { Music } from '../models/music';
-import { MusicType } from '../enums/music-type';
+import { MediaType } from '../enums/media-type';
 import { Subscription } from 'rxjs';
 import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
 import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
@@ -32,18 +31,8 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private modalCtrl: ModalController,
-    private modalService: ModalService,
     private trailService: TrailService
   ) { }
-
-
-  
-  async openTrailModal() {
-    const modal = await this.modalCtrl.create({
-      component: TrailModalPage
-    });
-  }
 
   ionViewWillEnter() {
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
@@ -53,18 +42,10 @@ export class HomePage {
     })
   }
 
-  async openMediaModal() {
-      const modal = await this.modalCtrl.create({
-        component: MediaModalPage
-      });
-  
-      await modal.present();
-  
-    }
-
   openTrailDetails(trail: Trail) {
     this.trailService.activeTrail = trail;
 
+    console.log(trail)
     this.navigatePage("details");
   }
 
