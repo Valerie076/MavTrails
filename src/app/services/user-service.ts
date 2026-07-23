@@ -35,8 +35,11 @@ export class UserService {
     return this._users.asObservable()
   }
   async saveUser(user: User) {
+    console.log("SAVIN USER");
+    
+    console.log(user.id);
 
-    await this.firebaseService.createDoc(user, `users/${user.id}`)
+    await this.firebaseService.createDocWithSpecficId(user, `users/${user.id}`)
     console.log("save it");
     
   }
