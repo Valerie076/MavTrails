@@ -14,51 +14,36 @@
 <ion-content class="ion-padding">
 
   <ion-item>
-    <ion-input
-      label="Title"
-      placeholder="Enter media title">
+    <ion-input label="Title" placeholder="Enter media title">
     </ion-input>
   </ion-item>
 
   <ion-item>
-  <ion-select
-    label="Media Type"
-    placeholder="Choose media type">
+    <ion-select label="Media Type" placeholder="Choose type">
 
-    <ion-select-option value="photo">
-      Photo
-    </ion-select-option>
+      @for(type of mediaTypes; track $index) {
+      <ion-select-option value="{{type}}">{{type}}</ion-select-option>
+      }
 
-    <ion-select-option value="music">
-      Music
-    </ion-select-option>
-
-    <ion-select-option value="podcast">
-      Podcast
-    </ion-select-option>
-
-    <ion-select-option value="audiobook">
-      Audiobook
-    </ion-select-option>
-
-  </ion-select>
-</ion-item>
+    </ion-select>
+  </ion-item>
 
   <ion-item>
-    <ion-input
-      label="Media URL"
-      placeholder="Paste image/video link">
+    <ion-input label="Media URL" placeholder="Paste image/media link. Images must end with image extension">
     </ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-textarea
-      label="Description"
-      placeholder="Write a description">
+    <ion-textarea label="Creator" placeholder="Add the author/creator of the media">
     </ion-textarea>
   </ion-item>
 
-  <ion-button expand="block">
+  <ion-item>
+    <ion-textarea label="Description" placeholder="Write a description">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="saveMedia()">
     Save Media
   </ion-button>
 
