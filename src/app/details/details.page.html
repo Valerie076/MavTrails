@@ -14,17 +14,17 @@
   <div class="details">{{trail.name}} Details </div>
 
   <ion-grid>
-    <ion-col size="6">
-      <ion-col></ion-col>
-      <div>
-        Posted by: {{postedBy.username}}
-        <div class="circle-picture">
-          <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
+    <ion-row>
+      <ion-col>
+        <div>
+          Posted by: {{postedBy.username}}
+          <div class="circle-picture">
+            <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
+          </div>
+          <br>
+          Rating: {{trail.ratings}}
         </div>
-        <br>
-        Rating: {{average}}/5
-      </div>
-    </ion-col>
+      </ion-col>
 
     
 
@@ -65,7 +65,7 @@
           </ion-card-content>
         </ion-card>
 
-  
+  </ion-row>
 
   </ion-grid>
 
@@ -76,11 +76,7 @@
   <ion-button (click)="openRatingModal()">Rate Trail</ion-button>
   <ion-button (click)="navigatePage('home')">Home</ion-button>
 
-  <swiper-container>
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-  </swiper-container>
+ 
 
   <ion-accordion-group>
   <ion-accordion value="first">

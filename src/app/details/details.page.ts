@@ -24,7 +24,7 @@ export class DetailsPage implements OnInit {
   detailsSubscription?: Subscription;
   trail!: Trail
   average: number = 0
-  
+
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg")
 
   constructor(
@@ -35,11 +35,13 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     this.trail = this.trailService.activeTrail;
-const sum = this.trail.ratings.reduce((accumulator, current) => accumulator + current, 0);
-console.log("sum:", sum)
+
+    const ratingsNums = this.trail.ratings.map(item => Number(item))
+    const sum = ratingsNums.reduce((accumulator, current) => accumulator + current, 0);
+    this.average = sum * 10 / ratingsNums.length / 10;
   }
 
-  
+
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
   }
