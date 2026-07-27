@@ -26,53 +26,7 @@
       </div>
     </ion-col>
 
-    <!-- <ion-grid>
-      <ion-col size="6" class="details">
-        <ion-col class="ion text ion-text-center"></ion-col>
-        <ion-col></ion-col>
-        <div> Details </div>
-      </ion-col>
-    </ion-grid> -->
-
-    <ion-row>
-      <ion-col>
-        <ion-title size="large">Location</ion-title>
-        {{trail.location}}
-      </ion-col>
-
-      <ion-toolbar>
-        <ion-title size="large">Features</ion-title>
-        {{trail.features}}
-      </ion-toolbar>
-
-      <ion-col>
-        <ion-title size="large">Description</ion-title>
-        {{trail.description}}
-      </ion-col>
-
-      <ion-col>
-        <ion-title size="large">Difficulty</ion-title>
-        {{trail.difficulty}}
-      </ion-col>
-
-      <ion-col>
-        <ion-title size="large">Features</ion-title>
-        {{trail.features}}
-      </ion-col>
-
-      <ion-col>
-        <ion-title size="large">Length</ion-title>
-        {{trail.length}} miles
-      </ion-col>
-
-      <ion-col>
-        <ion-title size="large">Walk Time</ion-title>
-        {{trail.time}} minutes
-      </ion-col>
-
-
-      <ion-col>
-        <ion-title size="large">Media</ion-title>
+    
 
         <ion-card>
           <ion-card-title>
@@ -111,8 +65,7 @@
           </ion-card-content>
         </ion-card>
 
-      </ion-col>
-    </ion-row>
+  
 
   </ion-grid>
 
@@ -128,5 +81,38 @@
     <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
   </swiper-container>
+
+  <ion-accordion-group>
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>Description</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">First Content</div>
+  </ion-accordion>
+  <ion-accordion value="second">
+    <ion-item slot="header" color="light">
+      <ion-label>Features</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">Second Content</div>
+  </ion-accordion>
+  <ion-accordion value="third">
+    <ion-item slot="header" color="light">
+      <ion-label>Difficulty</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">Third Content</div>
+    </ion-accordion>
+    <ion-accordion value="Fourth">
+    <ion-item slot="header" color="light">
+      <ion-label>Length</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">Fourth Content</div>
+    </ion-accordion>
+    <ion-accordion value="Fifth">
+    <ion-item slot="header" color="light">
+      <ion-label>Walk Time</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">Fifth Content</div>
+      </ion-accordion>
+</ion-accordion-group>
 
 </ion-content>
