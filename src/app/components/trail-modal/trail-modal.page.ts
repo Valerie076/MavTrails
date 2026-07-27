@@ -21,6 +21,8 @@ export class TrailModalPage implements OnInit {
   difficulty: string = ""
   time!: number
 
+  selectedValues: [""] = [""]
+
   constructor(
     private modalCtrl: ModalController,
     private trailService: TrailService,
@@ -45,7 +47,7 @@ export class TrailModalPage implements OnInit {
       this.location,
       this.time,
       this.description,
-      [],
+      this.selectedValues,
       [],
       this.authService.currentUserId
     )
