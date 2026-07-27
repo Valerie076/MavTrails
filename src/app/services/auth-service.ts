@@ -6,6 +6,7 @@ import {
   signOut
  } from '@angular/fire/auth';
 import { ErrorService } from './error-service';
+import { UserService } from './user-service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,21 @@ export class AuthService {
   
   constructor(
     private auth: Auth,
-    private errorService: ErrorService
-  ) { }
+    private errorService: ErrorService,
+    private userService: UserService
+  ) {
+    this.auth.onAuthStateChanged(() => {
+      // refresh user data, start subs, etc.
+      // this will fire every time the page loads,
+      // when users log in, and when they log out
+      userService.reset();
+      
+      let uid = this.currentUserId;
+      if (uid) {
+        userService.getData(uid);
+      }
+    })
+  }
 
   async register(email: string, password: string, passwordConf: string) {
     if (password != passwordConf) {
@@ -54,5 +68,9 @@ export class AuthService {
 
   async logout() {
     return signOut(this.auth);
+  }
+
+  get currentUserId(): string | undefined {
+    return this.auth.currentUser?.uid;
   }
 }
