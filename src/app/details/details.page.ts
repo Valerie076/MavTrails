@@ -5,9 +5,10 @@ import { MediaType } from '../enums/media-type';
 import { Subscription } from 'rxjs';
 import { TrailService } from '../services/trail-service';
 import { Router } from '@angular/router';
+import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
+import { ModalController } from '@ionic/angular';
 import { ModalService } from '../services/modal-service';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
-import { RatingModalPage } from '../rating-modal/rating-modal.page';
 
 @Component({
   selector: 'app-details',
@@ -18,6 +19,7 @@ import { RatingModalPage } from '../rating-modal/rating-modal.page';
 export class DetailsPage implements OnInit {
   detailsSubscription?: Subscription;
   trail!: Trail
+  average: number = 0
   
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg")
 
@@ -29,8 +31,11 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     this.trail = this.trailService.activeTrail;
+const sum = this.trail.ratings.reduce((accumulator, current) => accumulator + current, 0);
+console.log("sum:", sum)
   }
 
+  
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
   }
