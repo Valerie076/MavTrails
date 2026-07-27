@@ -10,6 +10,10 @@ import { ModalController } from '@ionic/angular';
 import { ModalService } from '../services/modal-service';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
 
+import { register } from 'swiper/element/bundle';
+
+register();
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
