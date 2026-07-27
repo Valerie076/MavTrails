@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable, firstValueFrom, first } from 'rxjs';
 import { FirebaseService } from './firebase-service';
 import { Trail } from '../models/trail';
 import { LatLngExpression } from 'leaflet';
@@ -56,18 +56,18 @@ export class TrailService {
     //turn behaviorSubject into observale we can subscribe to
     return this._trails.asObservable()
   }
+  async getDataOnce(uid: string): Promise<Object[] | undefined> {
+    return this.firebaseService.readCollectionByUid('trails', uid)
+        .pipe(first())
+        .toPromise()
+        .then(data => {
+          return data;
+        })
+  }
   async saveTrail(trail: Trail) {
-    await this.firebaseService.createDoc(trail, `trails`)
-    console.log("save trail");
-    
+    await this.firebaseService.createDoc(trail, `trails`) 
   }
   async updateTrail(trail: Trail) {
-    console.log(this.trails);
-    
-    console.log(" this next one vvvvvv is the one to update");
-    console.log(trail);
-    
-    
     await this.firebaseService.updateDoc(trail, `trails/${trail.id}`);
   }
   async deleteTrail(trail: Trail) {
@@ -92,6 +92,12 @@ export class TrailService {
     // trailNoPath.uid = 
 
     this.saveTrail(trailNoPath);
+  }
+
+  getAverageRating(trail: Trail): number {
+    const ratingsNums = trail.ratings.map(item => Number(item))
+    const sum = ratingsNums.reduce((accumulator, current) => accumulator + current, 0);
+    return sum * 10 / ratingsNums.length / 10;
   }
 
   // reset() {
