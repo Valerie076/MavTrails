@@ -14,10 +14,14 @@ export class FirebaseService {
   * path should follow the format "collectionName/documentName"
   * creates (or updates) a single document in firebase db
   **/
- // TODO - Make it add Doc
+  // TODO - Make it add Doc
   async createDoc<T extends Object>(objectToStore: T, collectionName: string) {
-  let collectionRef: CollectionReference = collection(this.firestore, collectionName)
-  await addDoc(collectionRef, JSON.parse(JSON.stringify(objectToStore)))
+    let collectionRef: CollectionReference = collection(this.firestore, collectionName)
+    await addDoc(collectionRef, JSON.parse(JSON.stringify(objectToStore)))
+  }
+  async createDocWithSpecficId<T extends Object>(updatedObject: T, path: string) {
+    // we can do this because update doc uses set doc :)
+    await this.updateDoc(updatedObject, path)
   }
   /**
   * Read
@@ -28,7 +32,7 @@ export class FirebaseService {
     Observable<T[]> {
     let collectionRef: CollectionReference = collection(this.firestore,
       collectionName)
-    return collectionData(collectionRef) as Observable<T[]>
+    return collectionData(collectionRef, { idField: "id" }) as Observable<T[]>
   }
   /**
   * Update
