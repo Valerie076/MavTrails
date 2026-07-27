@@ -15,7 +15,7 @@ import { UserService } from '../services/user-service';
 export class ProfilePage implements OnInit {
 
   // userArray: User = new User()
-  activeUser!: User
+  user!: User
 
   constructor(
     private router: Router,
@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.activeUser = this.userService.activeUser
+    this.user = this.userService.activeUser
   }
 
 }
