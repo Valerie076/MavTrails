@@ -9,9 +9,10 @@
 
   </ion-toolbar>
 </ion-header>
-
-<ion-searchbar placeholder="Custom Placeholder"></ion-searchbar>
-
+<ion-button (click)="openMediaModal()" shape="round" class="menu-button">
+  Add Media
+</ion-button>
+<ion-searchbar placeholder="Custom Placeholder" (ionInput)="handleInput($event)"></ion-searchbar>
 <ion-content>
 
   <ion-item>
@@ -40,7 +41,12 @@
       <ion-select-option value="1">All Rated Trails</ion-select-option>
     </ion-select>
   </ion-item>
- 
+
+  <br>
+
+  <ion-card><strong>
+      Trails - click one to view details!
+    </strong></ion-card>
 
   @for(trail of results; track $index) {
   <ion-item style="text-align: center;">
