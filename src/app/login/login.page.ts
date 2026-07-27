@@ -54,17 +54,32 @@ export class LoginPage implements OnInit {
   }
 
   loginUser(user: FirebaseUser) {
-    this.userSubscription = this.userService.users.subscribe(
-      (data: User[]) => {
-        let newUser = this.userService.getUserByID(data, user.uid);
-        if (newUser) {
-          this.userService.activeUser = newUser;
-        }
-        else {
-          this.errorService.createAlert("Error", "Could not find the user. Please try again.")
-        }
-      }
-    )
+
+    console.log(user);
+
+    this.userService.getData(user.uid);
+
+    console.log("users:");
+    
+    console.log(this.userService.users);
+    
+    
+    // this.userSubscription = this.userService.users.subscribe(
+    //   (data: User[]) => {
+    //     let newUser = this.userService.getUserByID(data, user.uid);
+        
+    //     this.userService.getData(user.uid);
+        
+    //     // let newUser = this.userService
+    //     // let newUser = this.userService.getData(user.uid);
+    //     if (newUser) {
+    //       this.userService.activeUser = newUser;
+    //     }
+    //     else {
+    //       this.errorService.createAlert("Error", "Could not find the user. Please try again.")
+    //     }
+    //   }
+    // )
   }
 
   clearFields() {

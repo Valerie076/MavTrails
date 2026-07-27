@@ -93,4 +93,8 @@ export class TrailService {
 
     this.saveTrail(trailNoPath);
   }
+
+  // reset() {
+  //   this.t
+  // }
 }
