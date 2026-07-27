@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      poopybbutt
+    <ion-title class="mavtrails">
+      MavTrails
     </ion-title>
     <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
@@ -10,10 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-button (click)="navigatePage('details')">Details</ion-button>
-
 <ion-searchbar placeholder="Custom Placeholder" (ionInput)="handleInput($event)"></ion-searchbar>
-
 <ion-content>
 
   <ion-item>
@@ -42,7 +39,12 @@
       <ion-select-option value="1">All Rated Trails</ion-select-option>
     </ion-select>
   </ion-item>
- 
+
+  <br>
+
+  <ion-card><strong>
+      Trails - click one to view details!
+    </strong></ion-card>
 
   @for(trail of results; track $index) {
   <ion-item style="text-align: center;">

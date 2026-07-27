@@ -16,25 +16,25 @@
     <ion-label>Trail Rating</ion-label>
 
     <ion-select
-      placeholder="Choose a rating">
+      placeholder="Choose a rating" (ionChange)="onRatingChange($event)">
 
-      <ion-select-option value="1">
+      <ion-select-option value=1>
         1 ⭐
       </ion-select-option>
 
-      <ion-select-option value="2">
+      <ion-select-option value=2>
         2 ⭐⭐
       </ion-select-option>
 
-      <ion-select-option value="3">
+      <ion-select-option value=3>
         3 ⭐⭐⭐
       </ion-select-option>
 
-      <ion-select-option value="4">
+      <ion-select-option value=4>
         4 ⭐⭐⭐⭐
       </ion-select-option>
 
-      <ion-select-option value="5">
+      <ion-select-option value=5>
         5 ⭐⭐⭐⭐⭐
       </ion-select-option>
 
@@ -48,7 +48,7 @@
     </ion-textarea>
   </ion-item>
 
-  <ion-button expand="block">
+  <ion-button (click)="closeRatings()" expand="block" >
     Submit Rating
   </ion-button>
 

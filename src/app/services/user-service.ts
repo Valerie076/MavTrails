@@ -38,6 +38,7 @@ export class UserService {
           
           console.log(this._users);
           
+          this.activeUser = users[0];
         },
       )
     } catch (err) {
