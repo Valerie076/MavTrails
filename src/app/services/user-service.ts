@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable, first } from 'rxjs';
 import { FirebaseService } from './firebase-service';
 import { AuthService } from './auth-service';
 
@@ -25,19 +25,11 @@ export class UserService {
     try {
       this.firebaseService.readCollectionByUid("users", uid).subscribe(
         res => {
-          console.log("get data");
-          
-          console.log(res);
-          
           //map JSON from firebase to Users
           let users = res.map((user: any) => new
             User(user.id, user.username, user.profilePicture))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
-          console.log("LOOKIE HERE");
-          
-          console.log(this._users);
-          
           this.activeUser = users[0];
         },
       )
@@ -49,14 +41,16 @@ export class UserService {
     //turn behaviorSubject into observale we can subscribe to
     return this._users.asObservable()
   }
+  async getDataOnce(uid: string): Promise<Object[] | undefined> {
+      return this.firebaseService.readCollectionByUid('users', uid)
+          .pipe(first())
+          .toPromise()
+          .then(data => {
+            return data;
+          })
+    }
   async saveUser(user: User) {
-    console.log("SAVIN USER");
-
-    console.log(user.id);
-
     await this.firebaseService.createDocWithSpecficId(user, `users/${user.id}`)
-    console.log("save it");
-
   }
   async deleteUser(user: User) {
     await this.firebaseService.deleteDoc(`users/${user.id}`)
