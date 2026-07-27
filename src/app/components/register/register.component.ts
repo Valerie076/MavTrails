@@ -51,7 +51,10 @@ export class RegisterComponent  implements OnInit {
 
   createUser(user: FirebaseUser) {
     let newUser = new User(user.uid, "", "");
+    console.log(newUser);
+    
     this.userService.saveUser(newUser);
+    this.userService.activeUser = newUser
   }
 
   clearFields() {

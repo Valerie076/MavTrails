@@ -1,4 +1,4 @@
-import { Music } from './music';
+import { Music } from './media';
 
 describe('Music', () => {
   it('should create an instance', () => {
