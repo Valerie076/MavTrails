@@ -9,10 +9,6 @@
 <!-- For ratings make sure to average all ratings and have final answer be output -->
 
 <ion-content>
-
-
-  <div class="details"> Details </div>
-
   <ion-grid>
     <ion-col size="6">
       <ion-col></ion-col>
@@ -26,26 +22,74 @@
       </div>
     </ion-col>
 
-
+    <ion-grid>
+      <ion-col size="6" class="details">
+        <ion-col class="ion text ion-text-center"></ion-col>
+        <ion-col></ion-col>
+        <div> Details </div>
+      </ion-col>
+    </ion-grid>
 
     <ion-row>
-      <ion-col>
+      <ion-toolbar>
         <ion-title size="large">Difficulty</ion-title>
         {{trail.difficulty}}
-      </ion-col>
+      </ion-toolbar>
 
-      <ion-col>
+      <ion-toolbar>
         <ion-title size="large">Features</ion-title>
         {{trail.features}}
-      </ion-col>
+      </ion-toolbar>
 
-      <ion-col>
       <ion-toolbar>
-        <ion-title size="large">Media</ion-title></ion-toolbar>
-      </ion-col>
+        <ion-title size="large">Features</ion-title>
+        {{trail.features}}
+      </ion-toolbar>
+
+      <ion-toolbar>
+        <ion-title size="large">Media</ion-title>
+
+        <ion-card>
+          <ion-card-title>
+            Music
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Music 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-title>
+            Podcasts
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Podcast 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-title>
+            Audiobook
+          </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              Audiobook 1
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-toolbar>
     </ion-row>
 
   </ion-grid>
+
+  <ion-button (click)="openMediaModal()">
+    Add Media
+  </ion-button>
 
   <ion-button (click)="openRatingModal()">Rate Trail</ion-button>
   <ion-button (click)="navigatePage('home')">Home</ion-button>
