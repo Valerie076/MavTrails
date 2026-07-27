@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc, addDoc } from '@angular/fire/firestore';
+import { Firestore, DocumentReference, doc, setDoc, CollectionReference, collection, collectionData, deleteDoc, addDoc, Query, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -33,6 +33,18 @@ export class FirebaseService {
     let collectionRef: CollectionReference = collection(this.firestore,
       collectionName)
     return collectionData(collectionRef, { idField: "id" }) as Observable<T[]>
+  }
+
+  readCollectionByUid<T extends Object>(collectionName: string, uid: string):
+    Observable<T[]> {
+    let collectionRef: CollectionReference = collection(this.firestore, collectionName)
+    
+    let q: Query = query(collectionRef, where('id', '==', uid))
+    console.log("query");
+    
+    console.log(collectionData(q) as Observable<T[]>);
+    
+    return collectionData(q) as Observable<T[]>;
   }
   /**
   * Update

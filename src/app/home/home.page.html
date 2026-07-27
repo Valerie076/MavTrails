@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Homepage
+      poopybbutt
     </ion-title>
     <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
@@ -16,7 +16,7 @@
 <ion-content>
 
   <ion-item>
-    <ion-select label="Filter by Features" placeholder="Selected Features" (ionChange)="onFeatureChange($event)">
+    <ion-select label="Filter by Features" placeholder="Selected Features">
       <ion-select-option value="hills">Hills</ion-select-option>
       <ion-select-option value="plains">Plains</ion-select-option>
       <ion-select-option value="wooded">Wooded</ion-select-option>
@@ -25,7 +25,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice" (ionChange)="onDifficultyChange($event)">
+    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice">
       <ion-select-option value="hard">Hard</ion-select-option>
       <ion-select-option value="medium">Medium</ion-select-option>
       <ion-select-option value="easy">Easy</ion-select-option>

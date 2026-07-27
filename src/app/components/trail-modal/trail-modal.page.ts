@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Trail } from 'src/app/models/trail';
+import { AuthService } from 'src/app/services/auth-service';
 import { TrailService } from 'src/app/services/trail-service';
 import { UserService } from 'src/app/services/user-service';
 
@@ -23,7 +24,8 @@ export class TrailModalPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private trailService: TrailService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
   ) { }
 
   closeModal() {
@@ -45,7 +47,7 @@ export class TrailModalPage implements OnInit {
       this.description,
       [],
       [],
-      this.userService.activeUser.id
+      this.authService.currentUserId
     )
     this.trailService.saveTrailPath(trailNoPath);
     this.closeModal();
