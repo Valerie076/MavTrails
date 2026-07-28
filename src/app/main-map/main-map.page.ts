@@ -71,17 +71,23 @@ export class MainMapPage implements OnInit {
       }).addTo(this.map);
 
       L.marker(latlng[0]).addTo(this.map)
-          .bindPopup(trail.name)
-          .openPopup();
+        .bindPopup(trail.name)
+        .bindTooltip(trail.name)
+        .addEventListener('click', (e) => this.openTrailDetails(trail))
+        .openPopup()
 
-      polyline.bindTooltip('Edit').addEventListener('click', (e) => {
-        console.log(polyline);
-      })
+      polyline.bindTooltip(trail.name)
+        .addEventListener('click', (e) => this.openTrailDetails(trail))
     }
   }
 
   navigatePage(path: string) {
     this.router.navigateByUrl(path)
+  }
+
+  openTrailDetails(trail: Trail) {
+    this.trailService.activeTrail = trail;
+    this.navigatePage("details");
   }
 
   onClick(e: L.LeafletMouseEvent, newPath: L.LatLngExpression[]) {
@@ -93,7 +99,7 @@ export class MainMapPage implements OnInit {
 
     newPath.push([mousePos.lat, mousePos.lng]);
 
-    const polyline = L.polyline(newPath, {
+    L.polyline(newPath, {
       color: 'blue',
       weight: 5,
       opacity: 0.7
@@ -120,10 +126,6 @@ export class MainMapPage implements OnInit {
     if (this.trailService.newTrailPath.length > 0) {
       this.openTrailModal();
     }
-    
-    // L.marker(this.trailService.newTrailPath[0]).addTo(this.map)
-    //     .bindPopup(this.trailService.activeTrail.name)
-    //     .openPopup();
   }
 
   async openTrailModal() {
