@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user-service';
 
 @Component({
   selector: 'app-update-profile',
@@ -10,14 +11,13 @@ import { User } from 'src/app/models/user';
 })
 export class UpdateProfileComponent implements OnInit {
 
-  updateEmailIn: string = ""
-  updatePhoneIn: string = ""
-  updateUsernameIn: string = ""
-  updatePasswordIn: string = ""
-  updatePicIn: string = ""
+  usernameIn: string = ""
+  phoneIn: string = ""
+  profilePictureIn: string = ""
 
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private userService: UserService
 
   ) { }
 
@@ -32,25 +32,16 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   saveProfile() {
-      let profile = new User(
-        "insert user id here when it loads lmao",
-        this.updateEmailIn,
-        this.updatePhoneIn,
-        this.updateUsernameIn,
-        this.updatePasswordIn,
-        this.updatePicIn,
-        
-      )
-  
-      let user = this.userService.activeUser;
-  
-      console.log(user);
-      
-  
-      user.profile.push(profile);
-  
-      this.userService.updateUser(user);
-    }
+    this.closeModal();
+
+    this.userService.activeUser.username = this.usernameIn
+    this.userService.activeUser.phone = this.phoneIn
+    this.userService.activeUser.profilePicture = this.profilePictureIn
+
+    let user = this.userService.activeUser;
+    console.log(user);
+    this.userService.updateUser(user);
+  }
 
   ngOnInit() { }
 

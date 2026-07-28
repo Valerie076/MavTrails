@@ -36,6 +36,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.user = this.userService.activeUser
     console.log(this.userService.activeUser)
+    console.log(this.user.profilePicture)
   }
 
 }
