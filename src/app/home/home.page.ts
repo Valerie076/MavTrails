@@ -22,6 +22,10 @@ import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
   standalone: false,
 })
 export class HomePage {
+  featureFilters: string[] = [];
+  difficultyFilters: string[] = [];
+  ratingFilters: number[] = [];
+
   trailSubscription?: Subscription;
 
   trails?: Trail[];
@@ -36,8 +40,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
-      this.trails = data
-      console.log(this.trails)
+      this.trails = data;
       this.results = [...this.trails];
     })
   }
@@ -56,36 +59,68 @@ export class HomePage {
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
-
   }
 
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || '';
-    this.results = this.trails!.filter((d) => d.name.toLowerCase().includes(query));
+    this.results = this.results!.filter((d) => d.name.toLowerCase().includes(query));
+  }
+
+  filter() {
+    if (this.trails) {
+      this.results = this.trails;
+    }
+
+    if (this.featureFilters.length != 0) {
+      this.results = this.filterByFeatures(this.featureFilters);
+    }
+    
+    if (this.difficultyFilters.length != 0) {
+      this.results = this.filterByDifficulty(this.difficultyFilters[0]);
+    }
+    
+    if (this.ratingFilters.length != 0) {
+      this.results = this.filterByRating(this.ratingFilters[0]);
+    }
   }
 
   onFeatureChange(event: any) {
-  // Capture the selected value from the event detail
-  const selectedValue = event.detail.value; 
+    const selectedValues = event.detail.value;
+    this.featureFilters = selectedValues;
+    this.filter();
+  }
   
-  console.log('User selected:', selectedValue);
-  this.filterByFeatures(selectedValue);
-}
+  onDifficultyChange(event: any) {
+    const selectedValues = event.detail.value;
+    this.difficultyFilters = selectedValues;
+    this.filter();
+  }
 
-filterByFeatures(value: string) {
-  this.results = this.trails!.filter((d) => d.features.includes(value))
-}
+  onRatingChange(event: any) {
+    const selectedValues = event.detail.value;
+    this.ratingFilters = selectedValues;
+    this.filter();
+  }
   
- onDifficultyChange(event: any) {
-  // Capture the selected value from the event detail
-  const selectedValue = event.detail.value; 
-  
-  console.log('User selected:', selectedValue);
-  this.filterByDifficulty(selectedValue);
-}
+  filterByFeatures(values: string[]): Trail[] {
+    return this.results!.filter((t) => {
+      let check: boolean = true;
+      for (let value of values) {
+        if (!t.features.includes(value)) {
+          check = false;
+        }
+      }
+      return check;
+    });
+  }
 
-filterByDifficulty(value: string) {
-  this.results = this.trails!.filter((d) => d.difficulty.includes(value))
-}
+  filterByDifficulty(value: string): Trail[] {
+    return this.results!.filter((t) => t.difficulty.includes(value))
+  }
+
+  filterByRating(value: number): Trail[] {
+    
+    return this.results!.filter((t) => this.trailService.getAverageRating(t) >= value);
+  }
 }

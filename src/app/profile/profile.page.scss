@@ -22,9 +22,15 @@
 }
 
 #profilePic{
-  position: absolute;
-  top: 16px;  // Distance from the top edge
-  right: 16px; // Distance from the right edge
   width: 200px;
   height: 200px;
+}
+.center-img {
+  display: block;
+  margin: auto;
+}
+
+.center {
+  width: 100%;
+  margin: auto;
 }
