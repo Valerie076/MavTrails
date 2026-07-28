@@ -11,6 +11,7 @@ import { ModalService } from '../services/modal-service';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
 
 import { register } from 'swiper/element/bundle';
+import { UserService } from '../services/user-service';
 
 register();
 
@@ -24,21 +25,26 @@ export class DetailsPage implements OnInit {
   detailsSubscription?: Subscription;
   trail!: Trail
   average: number = 0
-
-  postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg")
+  postedBy: User = new User("", "", "");
 
   constructor(
     private trailService: TrailService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private userService: UserService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.trail = this.trailService.activeTrail;
 
-    const ratingsNums = this.trail.ratings.map(item => Number(item))
-    const sum = ratingsNums.reduce((accumulator, current) => accumulator + current, 0);
-    this.average = sum * 10 / ratingsNums.length / 10;
+    if (this.trail.uid) {
+      const trailUser = await this.userService.getDataOnce(this.trail.uid);
+      if (trailUser) {
+        this.postedBy = trailUser[0] as User;
+      }
+    }
+
+    this.average = this.trailService.getAverageRating(this.trail);
   }
 
 
