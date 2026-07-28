@@ -1,16 +1,18 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
     <ion-title class="mavtrails">MavTrails</ion-title>
+
+    <ion-button (click)="navigatePage('home')">Home</ion-button>
+    <ion-button (click)="navigatePage('profile')">Profile</ion-button>
+    <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
   </ion-toolbar>
-  <ion-button (click)="navigatePage('home')">Home</ion-button>
-  <ion-button (click)="navigatePage('profile')">Profile</ion-button>
-      <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -23,10 +25,10 @@
   <div id="map"></div>
 
   @if(!creatingTrail) {
-    <ion-button (click)="createTrail()">Create Trail</ion-button>
+  <ion-button (click)="createTrail()">Create Trail</ion-button>
   }
   @if(creatingTrail) {
-    <ion-button (click)="endTrail()">Complete Trail</ion-button>
+  <ion-button (click)="endTrail()">Complete Trail</ion-button>
   }
   <!-- <ion-button (click)="saveTrail()">Save Trail</ion-button> -->
 
