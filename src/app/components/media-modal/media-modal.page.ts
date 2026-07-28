@@ -42,10 +42,7 @@ export class MediaModalPage implements OnInit {
     )
 
     let trail = this.trailService.activeTrail;
-
-    console.log(trail);
     
-
     trail.media.push(media);
 
     this.trailService.updateTrail(trail);

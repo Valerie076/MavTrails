@@ -11,6 +11,7 @@ import { ModalService } from '../services/modal-service';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
 
 import { register } from 'swiper/element/bundle';
+import { UserService } from '../services/user-service';
 
 register();
 
@@ -30,16 +31,24 @@ export class DetailsPage implements OnInit {
   constructor(
     private trailService: TrailService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private userService: UserService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.trail = this.trailService.activeTrail;
-const sum = this.trail.ratings.reduce((accumulator, current) => accumulator + current, 0);
-console.log("sum:", sum)
+
+    if (this.trail.uid) {
+      const trailUser = await this.userService.getDataOnce(this.trail.uid);
+      if (trailUser) {
+        this.postedBy = trailUser[0] as User;
+      }
+    }
+
+    this.average = this.trailService.getAverageRating(this.trail);
   }
 
-  
+
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
   }

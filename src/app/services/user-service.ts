@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable, first } from 'rxjs';
 import { FirebaseService } from './firebase-service';
 import { AuthService } from './auth-service';
 
@@ -50,14 +50,16 @@ export class UserService {
     //turn behaviorSubject into observale we can subscribe to
     return this._users.asObservable()
   }
+  async getDataOnce(uid: string): Promise<Object[] | undefined> {
+      return this.firebaseService.readCollectionByUid('users', uid)
+          .pipe(first())
+          .toPromise()
+          .then(data => {
+            return data;
+          })
+    }
   async saveUser(user: User) {
-    console.log("SAVIN USER");
-
-    console.log(user.id);
-
     await this.firebaseService.createDocWithSpecficId(user, `users/${user.id}`)
-    console.log("save it");
-
   }
   async deleteUser(user: User) {
     await this.firebaseService.deleteDoc(`users/${user.id}`)
