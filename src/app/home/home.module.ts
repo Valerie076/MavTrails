@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
+import { MenuComponent } from '../components/menu/menu.component';
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { MediaModalPage } from '../components/media-modal/media-modal.page';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, MediaModalPage]
+  declarations: [HomePage, MediaModalPage, MenuComponent]
 })
 export class HomePageModule {}
