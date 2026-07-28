@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="mavtrails">MavTrails</ion-title>
-    <ion-title>Hello</ion-title>
+    <ion-title>Hello, {{user.username}}</ion-title>
+    <ion-button slot="end" (click)="navigatePage('home')">Home</ion-button>
     <ion-button slot="end" (click)="navigateModal()">Update Profile</ion-button>
   </ion-toolbar>
 </ion-header>
@@ -25,8 +25,8 @@
 
   <div id="profilePic" class="center">
     <ion-card>
-      <ion-img src="../../assets/logo.png" alt="Centered image" class="center-img">
-      </ion-img>
+      <ion-img
+        src="{{user.profilePicture}}" alt="Profile Picture" class="center-img"></ion-img>
     </ion-card>
   </div>
 
@@ -41,13 +41,10 @@
         <ion-card>
           <ion-card-content>
             <strong>
-              Email:
+              Username: {{user.username}}
               <br>
-              Phone:
-              <br>
-              Username:
+              Phone: {{user.phone}}
             </strong>
-            <p><br>Miscellaneous </p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -56,6 +53,5 @@
 
 
 </ion-content>
-<ion-button (click)="navigatePage('home')">Home</ion-button>
 
 <!-- NOTE: Once we get the firebase stuff and everything can be applied to each page we can do mustache notation -->

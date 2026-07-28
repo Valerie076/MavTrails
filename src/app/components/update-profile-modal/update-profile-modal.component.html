@@ -12,9 +12,11 @@
 
 
 <ion-card>
-  <ion-input [(ngModel)]="updateEmailIn" label="Email:" placeholder="enter here"></ion-input>
-  <ion-input [(ngModel)]="updatePhoneIn" label="Phone:" placeholder="enter here"></ion-input>
-  <ion-input [(ngModel)]="updateUsernameIn" label="Username:" placeholder="enter here"></ion-input>
-  <ion-input [(ngModel)]="updatePasswordIn" label="Password:" placeholder="enter here"></ion-input>
-  <ion-input [(ngModel)]="updatePicIn" label="Profile Pic:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="phoneIn" label="Phone:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="usernameIn" label="Username:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="profilePictureIn" label="Profile Pic:" placeholder="enter here"></ion-input>
 </ion-card>
+
+<ion-button (click)="saveProfile()">
+  Submit
+</ion-button>
