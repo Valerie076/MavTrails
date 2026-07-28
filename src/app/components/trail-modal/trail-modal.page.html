@@ -31,8 +31,8 @@
     </ion-textarea>
   </ion-item>
 
-<ion-item>
-    <ion-select label="Add Features:" placeholder="selected features" multiple="true" [(ngModel)]="selectedValues">
+  <ion-item>
+    <ion-select label="Add Features:" placeholder="Select Features" multiple="true" [(ngModel)]="selectedValues">
       <ion-select-option value="hills">Hills</ion-select-option>
       <ion-select-option value="plains">Plains</ion-select-option>
       <ion-select-option value="wooded">Wooded</ion-select-option>
@@ -42,9 +42,12 @@
   </ion-item>
 
   <ion-item>
-    <ion-textarea label="Difficulty:" placeholder="Add Difficulty Rating" [(ngModel)]="difficulty">
-    </ion-textarea>
-    (very easy, easy, medium, or hard)
+    <ion-select label="Difficulty:" placeholder="Add Difficulty Rating" [(ngModel)]="difficulty">
+      <ion-select-option value="very easy">Very Easy</ion-select-option>
+      <ion-select-option value="easy">Easy</ion-select-option>
+      <ion-select-option value="medium">Medium</ion-select-option>
+      <ion-select-option value="hard">Hard</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>

@@ -1,14 +1,14 @@
 import { MediaType } from "../enums/media-type";
 
 export class Media {
-    id: string;
+    id?: string;
     uid: string;
     name: string;
     creator: string;
     type: MediaType;
     description: string;
 
-    constructor(uid: string, name: string, creator: string, type: MediaType, description: string, id: string) {
+    constructor(uid: string, name: string, creator: string, type: MediaType, description: string, id?: string) {
         this.id = id;
         this.uid = uid;
         this.name = name;

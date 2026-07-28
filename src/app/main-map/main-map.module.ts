@@ -8,13 +8,16 @@ import { MainMapPageRoutingModule } from './main-map-routing.module';
 
 import { MainMapPage } from './main-map.page';
 import { TrailModalPage } from '../components/trail-modal/trail-modal.page';
+import { MenuComponent } from '../components/menu/menu.component';
+import { SharedModule } from '../modules/shared/shared-module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainMapPageRoutingModule
+    MainMapPageRoutingModule,
+    SharedModule
   ],
   declarations: [MainMapPage, TrailModalPage]
 })

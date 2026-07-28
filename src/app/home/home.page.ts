@@ -47,8 +47,6 @@ export class HomePage {
 
   openTrailDetails(trail: Trail) {
     this.trailService.activeTrail = trail;
-
-    console.log(trail)
     this.navigatePage("details");
   }
 
