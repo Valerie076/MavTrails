@@ -50,7 +50,7 @@ export class RegisterComponent  implements OnInit {
   }
 
   createUser(user: FirebaseUser) {
-    let newUser = new User(user.uid, "", "", "");
+    let newUser = new User(user.uid, "", "../../assets/logo.png", "");
     console.log(newUser);
     
     this.userService.saveUser(newUser);
