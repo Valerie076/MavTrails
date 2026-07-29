@@ -50,11 +50,6 @@ export class HomePage {
     this.navigatePage("details");
   }
 
-  async logout() {
-    await this.authService.logout();
-    this.navigatePage("login");
-  }
-
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
   }

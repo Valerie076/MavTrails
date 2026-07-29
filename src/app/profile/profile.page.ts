@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalService } from '../services/modal-service';
 import { UpdateProfileComponent } from '../components/update-profile-modal/update-profile-modal.component';
 import { UserService } from '../services/user-service';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-profile',
@@ -22,8 +23,15 @@ export class ProfilePage implements OnInit {
     private modalCtrl: ModalController,
     private modalService: ModalService,
     private userService: UserService,
-
+    private authService: AuthService
   ) { }
+
+
+  async logout() {
+    await this.authService.logout();
+    this.navigatePage("login");
+  }
+
 
   navigatePage(page: string) {
     this.router.navigateByUrl(page)
