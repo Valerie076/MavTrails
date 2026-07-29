@@ -58,14 +58,14 @@ export class TrailService {
   }
   async getDataOnce(uid: string): Promise<Object[] | undefined> {
     return this.firebaseService.readCollectionByUid('trails', uid)
-        .pipe(first())
-        .toPromise()
-        .then(data => {
-          return data;
-        })
+      .pipe(first())
+      .toPromise()
+      .then(data => {
+        return data;
+      })
   }
   async saveTrail(trail: Trail) {
-    await this.firebaseService.createDoc(trail, `trails`) 
+    await this.firebaseService.createDoc(trail, `trails`)
   }
   async updateTrail(trail: Trail) {
     await this.firebaseService.updateDoc(trail, `trails/${trail.id}`);
@@ -100,7 +100,75 @@ export class TrailService {
     return sum * 10 / ratingsNums.length / 10;
   }
 
-  // reset() {
-  //   this.t
-  // }
+  getDifficulty(trail: Trail): string[] {
+    const difficulty: string = trail.difficulty;
+    
+    const icons: string[] = [];
+
+    switch (difficulty) {
+      case "very": {
+        icons.push("flame");
+        for (let i = 0; i < 4; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "easy": {
+        for (let i = 0; i < 2; i++) {
+          icons.push("flame");
+        }
+        for (let i = 0; i < 3; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "medium": {
+        for (let i = 0; i < 3; i++) {
+          icons.push("flame");
+        }
+        for (let i = 0; i < 2; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "hard": {
+        for (let i = 0; i < 4; i++) {
+          icons.push("flame");
+        }
+        icons.push("flame-outline");
+        break;
+      }
+      case "master": {
+        for (let i = 0; i < 5; i++) {
+          icons.push("flame");
+        }
+        break;
+      }
+    }
+
+    return icons;
+  }
+
+  getStars(trail: Trail): string[] {
+    let rating: number = this.getAverageRating(trail);
+
+    const stars: string[] = [];
+
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push('full');
+    }
+
+    if (hasHalfStar) {
+      stars.push('half');
+    }
+
+    while (stars.length < 5) {
+      stars.push('empty');
+    }
+
+    return stars;
+  }
 }

@@ -39,7 +39,6 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.activeUser.profilePicture = this.profilePictureIn
 
     let user = this.userService.activeUser;
-    console.log(user);
     this.userService.updateUser(user);
   }
 

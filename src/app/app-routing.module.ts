@@ -23,19 +23,18 @@ const routes: Routes = [
   },
   {
     path: 'details',
-    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'main-map',
-    loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
-  },
-  {
-    path: 'main-map',
-    loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule)
+    loadChildren: () => import('./main-map/main-map.module').then( m => m.MainMapPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'rating-modal',
