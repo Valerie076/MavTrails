@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Hello, {{user.username}}</ion-title>
+    <ion-title class="mavtrails">MavTrails</ion-title>
     <ion-button slot="end" (click)="navigatePage('home')">Home</ion-button>
     <ion-button slot="end" (click)="navigateModal()">Update Profile</ion-button>
   </ion-toolbar>
@@ -14,20 +14,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
+  <div id="container" class="base-img">
     <ion-card>
-      <strong>
         <ion-img
           src="https://png.pngtree.com/background/20250121/original/pngtree-elegant-green-flower-border-design-picture-image_16226054.jpg"></ion-img>
-      </strong>
     </ion-card>
   </div>
 
-  <div id="profilePic" class="center">
-    <ion-card>
-      <ion-img
-        src="{{user.profilePicture}}" alt="Profile Picture" class="center-img"></ion-img>
-    </ion-card>
+ <div id="profilePic" class="center">
+    <ion-avatar class="avatar-card">
+        <ion-img src="{{user.profilePicture}}" alt="Profile Picture"></ion-img>
+    </ion-avatar>
   </div>
 
   <ion-grid>
@@ -35,7 +32,7 @@
       <ion-col size="8" size-md="6" size-lg="4">
         <ion-card>
           <ion-card-content class="ion-text-center">
-            <h1>Hello, ___</h1>
+            <h1>Hello, {{user.username}}</h1>
           </ion-card-content>
         </ion-card>
         <ion-card>
