@@ -39,10 +39,6 @@ export class MainMapPage implements OnInit {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    L.marker([41.2516656, -96.0097386]).addTo(this.map)
-      .bindPopup('@Canva fix this image <br> ')
-      .openPopup();
-
     // FETCH TASKS
     this.trailSubscription = this.trailService.trails.subscribe((data: Trail[]) => {
       this.trails = data;

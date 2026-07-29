@@ -71,32 +71,4 @@ export class RegisterComponent  implements OnInit {
       this.register()
     }
   }
-
-  // validateEntry(): boolean {
-  //   if (this.username == "" || this.email == "" || this.phone == "" || this.profilePicture == "") {
-  //     this.errorService.createAlert("Must fill out all fields", "")
-  //     return false
-  //   }
-
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailRegex.test(this.email)) {
-  //     this.errorService.createAlert("Not an email address", "")
-  //     return false;
-  //   }
-
-  //   const phoneRegex = /^(?:\+1\s?)?(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/;
-  //   if (!phoneRegex.test(this.phone)) {
-  //     this.errorService.createAlert("Not a phone number", "")
-  //     return false;
-  //   }
-
-  //   const urlRegex = /^https?:\/\/(?:[\w-]+\.)+[\w-]{2,}(?:\/[^\s]*)?$/;
-  //   if (!urlRegex.test(this.profilePicture)) {
-  //     this.errorService.createAlert("Not a URL", "")
-  //     return false;
-  //   }
-
-  //   return true
-  // }
-
 }
