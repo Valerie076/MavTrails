@@ -100,28 +100,53 @@ export class TrailService {
     return sum * 10 / ratingsNums.length / 10;
   }
 
-  getFeatures(trail: Trail): string[] {
-    // const features: string = ""
+  getDifficulty(trail: Trail): string[] {
+    const difficulty: string = trail.difficulty;
+    
+    const icons: string[] = [];
 
-    // const icons: string[] = [];
+    switch (difficulty) {
+      case "very": {
+        icons.push("flame");
+        for (let i = 0; i < 4; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "easy": {
+        for (let i = 0; i < 2; i++) {
+          icons.push("flame");
+        }
+        for (let i = 0; i < 3; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "medium": {
+        for (let i = 0; i < 3; i++) {
+          icons.push("flame");
+        }
+        for (let i = 0; i < 2; i++) {
+          icons.push("flame-outline");
+        }
+        break;
+      }
+      case "hard": {
+        for (let i = 0; i < 4; i++) {
+          icons.push("flame");
+        }
+        icons.push("flame-outline");
+        break;
+      }
+      case "master": {
+        for (let i = 0; i < 5; i++) {
+          icons.push("flame");
+        }
+        break;
+      }
+    }
 
-    // const fullStars = Math.floor(rating);
-    // const hasHalfStar = rating % 1 >= 0.5;
-
-    // for (let i = 0; i < fullStars; i++) {
-    //   stars.push('full');
-    // }
-
-    // if (hasHalfStar) {
-    //   stars.push('half');
-    // }
-
-    // while (stars.length < 5) {
-    //   stars.push('empty');
-    // }
-
-    // return stars;
-    return []
+    return icons;
   }
 
   getStars(trail: Trail): string[] {

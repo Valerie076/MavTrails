@@ -54,15 +54,7 @@ export class LoginPage implements OnInit {
   }
 
   loginUser(user: FirebaseUser) {
-
-    console.log(user);
-
     this.userService.getData(user.uid);
-
-    console.log("users:");
-    
-    console.log(this.userService.users);
-    
     
     // this.userSubscription = this.userService.users.subscribe(
     //   (data: User[]) => {

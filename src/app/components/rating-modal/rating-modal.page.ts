@@ -21,16 +21,12 @@ export class RatingModalPage implements OnInit {
   }
 
   onRatingChange(event: any) {
-    // Capture the selected value from the event detail
     const selectedValue = event.detail.value;
-
-    console.log('selected:', selectedValue);
     this.saveRating(selectedValue)
   }
 
   saveRating(value: number) {
     this.trailService.activeTrail.ratings.push(value)
-    console.log('saved:', value)
   }
 
   closeRatings() {

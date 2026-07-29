@@ -44,7 +44,7 @@
             interface="popover"
             fill="solid"
             (ionChange)="onDifficultyChange($event)">
-          <ion-select-option value="very easy">Very Easy</ion-select-option>
+          <ion-select-option value="very">Very Easy</ion-select-option>
           <ion-select-option value="easy">Easy</ion-select-option>
           <ion-select-option value="medium">Medium</ion-select-option>
           <ion-select-option value="hard">Hard</ion-select-option>
@@ -116,13 +116,14 @@
               </ion-icon>
             </ion-col>
             <ion-col class="difficulty" [style]="
-                trail.difficulty === 'very easy' ? 'color: lime;' :
-                trail.difficulty === 'easy' ? 'color: var(--ion-color-primary);' :
-                trail.difficulty === 'medium' ? 'color: yellow;' :
-                trail.difficulty === 'hard' ? 'color: red;' :
-                trail.difficulty === 'master' ? 'color: purple;' :
+                trail.difficulty === 'very' ? 'color: #77C6ED;' :
+                trail.difficulty === 'easy' ? 'color: #55E05F;' :
+                trail.difficulty === 'medium' ? 'color: #FFFA7A;' :
+                trail.difficulty === 'hard' ? 'color: #F26B6B;' :
+                trail.difficulty === 'master' ? 'color: #7C60D1;' :
                 'color: white;'">
-              {{trail.difficulty}}
+              <ion-icon style="font-size: 2em;" *ngFor="let icon of getDifficulty(trail)" [name]="icon">
+              </ion-icon>
             </ion-col>
             <ion-col>
               <ion-icon style="font-size: 2em;" *ngFor="let star of getStars(trail)" [name]="

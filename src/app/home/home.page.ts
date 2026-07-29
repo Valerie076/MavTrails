@@ -23,7 +23,7 @@ import { RatingModalPage } from '../components/rating-modal/rating-modal.page';
 })
 export class HomePage {
   featureFilters: string[] = [];
-  difficultyFilters: string[] = [];
+  difficultyFilters: string = "";
   ratingFilters: number[] = [];
 
   selectedFeatures: string[] | undefined = undefined;
@@ -76,7 +76,7 @@ export class HomePage {
     }
 
     if (this.difficultyFilters.length != 0) {
-      this.results = this.filterByDifficulty(this.difficultyFilters[0]);
+      this.results = this.filterByDifficulty(this.difficultyFilters);
     }
 
     if (this.ratingFilters.length != 0) {
@@ -140,8 +140,8 @@ export class HomePage {
     this.onRatingChange({ detail: { value: [] } });
   }
 
-  getFeatures(trail: Trail): string[] {
-    return this.trailService.getFeatures(trail);
+  getDifficulty(trail: Trail): string[] {
+    return this.trailService.getDifficulty(trail);
   }
 
   getStars(trail: Trail): string[] {
