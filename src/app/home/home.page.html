@@ -115,7 +115,7 @@
               ">
               </ion-icon>
             </ion-col>
-            <ion-col class="difficulty" [style]="
+            <ion-col class="difficulty" [title]="trail.difficulty | titlecase" [aria-label]="trail.difficulty | titlecase" [style]="
                 trail.difficulty === 'very' ? 'color: #77C6ED;' :
                 trail.difficulty === 'easy' ? 'color: #55E05F;' :
                 trail.difficulty === 'medium' ? 'color: #FFFA7A;' :
@@ -131,7 +131,8 @@
                 star === 'half' ? 'star-half' :
                 'star-outline'
               ">
-              </ion-icon>
+            </ion-icon>
+            ({{trail.ratings.length}})
             </ion-col>
           </ion-row>
         </ion-grid>
