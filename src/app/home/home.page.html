@@ -1,62 +1,147 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
     <ion-title class="mavtrails">
       MavTrails
     </ion-title>
     <ion-button slot="end" (click)="navigatePage('profile')">Profile</ion-button>
-    <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
-    <ion-button routerLink="/main-map">Main Map</ion-button>
-
+    <!-- <ion-button slot="start" routerLink="/main-map">Main Map</ion-button> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-searchbar placeholder="Search for a trail" (ionInput)="handleInput($event)"></ion-searchbar>
 <ion-content>
+  <ion-grid>
+    <ion-row style="background-color: var(--ion-color-primary);">
 
-  <ion-item>
-    <ion-select
-      label="Filter by Features"
-      placeholder="Selected Features"
-      (ionChange)="onFeatureChange($event)"
-      [multiple]="true"
-    >
-      <ion-select-option value="hills">Hills</ion-select-option>
-      <ion-select-option value="plains">Plains</ion-select-option>
-      <ion-select-option value="wooded">Wooded</ion-select-option>
-      <ion-select-option value="water">Water</ion-select-option>
-      <ion-select-option value="houses">Houses</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-select label="Filter by Difficulty" placeholder="Difficulty Choice" (ionChange)="onDifficultyChange($event)">
-      <ion-select-option value="hard">Hard</ion-select-option>
-      <ion-select-option value="medium">Medium</ion-select-option>
-      <ion-select-option value="easy">Easy</ion-select-option>
-      <ion-select-option value="very easy">Very Easy</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-select label="Filter by Ratings" placeholder="Choose Minimum Rating" (ionChange)="onRatingChange($event)">
-      <ion-select-option value="5">5 Stars Only</ion-select-option>
-      <ion-select-option value="4">4 Stars and Above</ion-select-option>
-      <ion-select-option value="3">3 Stars and Above</ion-select-option>
-      <ion-select-option value="2">2 Stars and Above</ion-select-option>
-      <ion-select-option value="1">All Rated Trails</ion-select-option>
-    </ion-select>
-  </ion-item>
+      <ion-col size="auto">
+        <ion-searchbar show-clear-button="always" class="search" placeholder="Search" (ionInput)="handleInput($event)"></ion-searchbar>
+      </ion-col>
+      <ion-col>
+        <ion-select
+            [(ngModel)]="selectedFeatures"
+            placeholder="Selected Features"
+            interface="popover"
+            fill="solid"
+            (ionChange)="onFeatureChange($event)"
+            [multiple]="true">
+          <ion-select-option value="hills">
+            <ion-icon name="chevron-up"></ion-icon>
+            Hills
+          </ion-select-option>
+          <ion-select-option value="plains">Plains</ion-select-option>
+          <ion-select-option value="wooded">Wooded</ion-select-option>
+          <ion-select-option value="water">Water</ion-select-option>
+          <ion-select-option value="houses">Houses</ion-select-option>
+          <ion-button *ngIf="selectedFeatures" fill="clear" slot="start" aria-label="Clear filter" (click)="clearFeatures()">
+            <ion-icon slot="icon-only" name="close-outline" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select
+            [(ngModel)]="selectedDifficulty"
+            placeholder="Difficulty Choice"
+            interface="popover"
+            fill="solid"
+            (ionChange)="onDifficultyChange($event)">
+          <ion-select-option value="very">Very Easy</ion-select-option>
+          <ion-select-option value="easy">Easy</ion-select-option>
+          <ion-select-option value="medium">Medium</ion-select-option>
+          <ion-select-option value="hard">Hard</ion-select-option>
+          <ion-select-option value="master">Master</ion-select-option>
+          <ion-button *ngIf="selectedDifficulty" fill="clear" slot="start" aria-label="Clear filter" (click)="clearDifficulty()">
+            <ion-icon slot="icon-only" name="close-outline" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select
+            [(ngModel)]="selectedRating"
+            placeholder="Choose Minimum Rating"
+            interface="popover"
+            fill="solid"
+            (ionChange)="onRatingChange($event)">
+          <ion-select-option value="5">5 Stars Only</ion-select-option>
+          <ion-select-option value="4">4 Stars and Above</ion-select-option>
+          <ion-select-option value="3">3 Stars and Above</ion-select-option>
+          <ion-select-option value="2">2 Stars and Above</ion-select-option>
+          <ion-select-option value="1">All Rated Trails</ion-select-option>
+          <ion-button *ngIf="selectedRating" fill="clear" slot="start" aria-label="Clear filter" (click)="clearRating()">
+            <ion-icon slot="icon-only" name="close-outline" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <br>
+  <ion-grid style="text-align: center;">
+    <ion-row>
+      <ion-col>
+        Name
+      </ion-col>
+      <ion-col>
+        Description
+      </ion-col>
+      <ion-col>
+        Features
+      </ion-col>
+      <ion-col>
+        Difficulty
+      </ion-col>
+      <ion-col>
+        Rating
+      </ion-col>
+    </ion-row>
 
-  <ion-card><strong>
-      Trails - click one to view details!
-    </strong></ion-card>
+    @for(trail of results; track $index) {
+    <ion-row style="text-align: center;">
+      <ion-button (click)="openTrailDetails(trail)" expand="full" fill="clear" class="trail-button">
+        <ion-grid class="trail-grid">
+          <ion-row>
+            <ion-col class="name" style="text-align: left;">
+              {{trail.name}}
+            </ion-col>
+            <ion-col class="description" style="text-align: left;">
+              {{trail.description}}
+            </ion-col>
+            <ion-col>
+              <ion-icon size="large" [title]="feature | titlecase" [aria-label]="feature | titlecase" *ngFor="let feature of trail.features" [name]="
+                feature === 'hills' ? 'chevron-up' :
+                feature === 'plains' ? 'remove' :
+                feature === 'wooded' ? 'leaf' :
+                feature === 'water' ? 'water' :
+                feature === 'houses' ? 'home' :
+                ''
+              ">
+              </ion-icon>
+            </ion-col>
+            <ion-col class="difficulty" [title]="trail.difficulty | titlecase" [aria-label]="trail.difficulty | titlecase" [style]="
+                trail.difficulty === 'very' ? 'color: #77C6ED;' :
+                trail.difficulty === 'easy' ? 'color: #55E05F;' :
+                trail.difficulty === 'medium' ? 'color: #FFFA7A;' :
+                trail.difficulty === 'hard' ? 'color: #F26B6B;' :
+                trail.difficulty === 'master' ? 'color: #7C60D1;' :
+                'color: white;'">
+              <ion-icon style="font-size: 2em;" *ngFor="let icon of getDifficulty(trail)" [name]="icon">
+              </ion-icon>
+            </ion-col>
+            <ion-col>
+              <ion-icon style="font-size: 2em;" *ngFor="let star of getStars(trail)" [name]="
+                star === 'full' ? 'star' :
+                star === 'half' ? 'star-half' :
+                'star-outline'
+              ">
+            </ion-icon>
+            ({{trail.ratings.length}})
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+      </ion-button>
+    </ion-row>
+    }
+  </ion-grid>
 
-  @for(trail of results; track $index) {
-  <ion-item style="text-align: center;">
-    <ion-button (click)="openTrailDetails(trail)" expand="block">
-      {{trail.name}}
-    </ion-button>
-  </ion-item>
-  }
 
 </ion-content>

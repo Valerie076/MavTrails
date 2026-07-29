@@ -38,12 +38,7 @@ export class FirebaseService {
   readCollectionByUid<T extends Object>(collectionName: string, uid: string):
     Observable<T[]> {
     let collectionRef: CollectionReference = collection(this.firestore, collectionName)
-    
     let q: Query = query(collectionRef, where('id', '==', uid))
-    console.log("query");
-    
-    console.log(collectionData(q) as Observable<T[]>);
-    
     return collectionData(q) as Observable<T[]>;
   }
   /**

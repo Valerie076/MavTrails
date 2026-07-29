@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { MediaType } from 'src/app/enums/media-type';
 import { Media } from 'src/app/models/media';
 import { TrailService } from 'src/app/services/trail-service';
+import { UserService } from 'src/app/services/user-service';
 
 @Component({
   selector: 'app-media-modal',
@@ -24,7 +25,8 @@ export class MediaModalPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private trailService: TrailService
+    private trailService: TrailService,
+    private userService: UserService
   ) { }
 
   closeModal(){
@@ -32,20 +34,19 @@ export class MediaModalPage implements OnInit {
   }
 
   saveMedia() {
+    this.closeModal();
+
     let media = new Media(
-      "insert user id here when it loads lmao",
+      this.userService.activeUser.id,
       this.title,
       this.creator,
       this.type,
-      this.description,
-      "ID"
+      this.description
     )
 
-    let trail = this.trailService.activeTrail;
+    this.trailService.activeTrail.media.push(media);
     
-    trail.media.push(media);
-
-    this.trailService.updateTrail(trail);
+    this.trailService.updateTrail(this.trailService.activeTrail);
   }
 
   ngOnInit() {
