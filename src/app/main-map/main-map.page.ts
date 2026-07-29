@@ -19,6 +19,8 @@ export class MainMapPage implements OnInit {
   trailSubscription?: Subscription;
   trails: Trail[] = [];
 
+  previousLine?: L.Polyline
+
   map!: L.Map;
 
   creatingTrail: boolean = false;
@@ -95,7 +97,11 @@ export class MainMapPage implements OnInit {
 
     newPath.push([mousePos.lat, mousePos.lng]);
 
-    L.polyline(newPath, {
+    if (this.previousLine) {
+      this.previousLine.remove();
+    }
+
+    this.previousLine = L.polyline(newPath, {
       color: 'blue',
       weight: 5,
       opacity: 0.7
@@ -110,7 +116,7 @@ export class MainMapPage implements OnInit {
     this.creatingTrail = true;
 
     this.map.on('click', (e) => {
-      this.onClick(e, newPath);
+      this.onClick(e, this.trailService.newTrailPath);
     });
   }
 
@@ -122,6 +128,21 @@ export class MainMapPage implements OnInit {
     if (this.trailService.newTrailPath.length > 0) {
       this.openTrailModal();
     }
+  }
+
+  undo() {
+    this.trailService.newTrailPath.pop();
+    
+    if (this.previousLine) {
+      this.previousLine.remove();
+    }
+
+    this.previousLine = L.polyline(this.trailService.newTrailPath, {
+      color: 'blue',
+      weight: 5,
+      opacity: 0.7
+    }).addTo(this.map);
+
   }
 
   async openTrailModal() {
