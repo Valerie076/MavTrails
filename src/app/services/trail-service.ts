@@ -58,14 +58,14 @@ export class TrailService {
   }
   async getDataOnce(uid: string): Promise<Object[] | undefined> {
     return this.firebaseService.readCollectionByUid('trails', uid)
-        .pipe(first())
-        .toPromise()
-        .then(data => {
-          return data;
-        })
+      .pipe(first())
+      .toPromise()
+      .then(data => {
+        return data;
+      })
   }
   async saveTrail(trail: Trail) {
-    await this.firebaseService.createDoc(trail, `trails`) 
+    await this.firebaseService.createDoc(trail, `trails`)
   }
   async updateTrail(trail: Trail) {
     await this.firebaseService.updateDoc(trail, `trails/${trail.id}`);
@@ -100,7 +100,50 @@ export class TrailService {
     return sum * 10 / ratingsNums.length / 10;
   }
 
-  // reset() {
-  //   this.t
-  // }
+  getFeatures(trail: Trail): string[] {
+    // const features: string = ""
+
+    // const icons: string[] = [];
+
+    // const fullStars = Math.floor(rating);
+    // const hasHalfStar = rating % 1 >= 0.5;
+
+    // for (let i = 0; i < fullStars; i++) {
+    //   stars.push('full');
+    // }
+
+    // if (hasHalfStar) {
+    //   stars.push('half');
+    // }
+
+    // while (stars.length < 5) {
+    //   stars.push('empty');
+    // }
+
+    // return stars;
+    return []
+  }
+
+  getStars(trail: Trail): string[] {
+    let rating: number = this.getAverageRating(trail);
+
+    const stars: string[] = [];
+
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push('full');
+    }
+
+    if (hasHalfStar) {
+      stars.push('half');
+    }
+
+    while (stars.length < 5) {
+      stars.push('empty');
+    }
+
+    return stars;
+  }
 }

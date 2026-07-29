@@ -26,6 +26,10 @@ export class HomePage {
   difficultyFilters: string[] = [];
   ratingFilters: number[] = [];
 
+  selectedFeatures: string[] | undefined = undefined;
+  selectedDifficulty: string | undefined = undefined;
+  selectedRating: string | undefined = undefined;
+
   trailSubscription?: Subscription;
 
   trails?: Trail[];
@@ -33,7 +37,6 @@ export class HomePage {
   public results: Trail[] = [];
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private trailService: TrailService
   ) { }
@@ -57,6 +60,9 @@ export class HomePage {
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || '';
+    if (this.trails) {
+      this.results = this.trails;
+    }
     this.results = this.results!.filter((d) => d.name.toLowerCase().includes(query));
   }
 
@@ -68,11 +74,11 @@ export class HomePage {
     if (this.featureFilters.length != 0) {
       this.results = this.filterByFeatures(this.featureFilters);
     }
-    
+
     if (this.difficultyFilters.length != 0) {
       this.results = this.filterByDifficulty(this.difficultyFilters[0]);
     }
-    
+
     if (this.ratingFilters.length != 0) {
       this.results = this.filterByRating(this.ratingFilters[0]);
     }
@@ -83,7 +89,7 @@ export class HomePage {
     this.featureFilters = selectedValues;
     this.filter();
   }
-  
+
   onDifficultyChange(event: any) {
     const selectedValues = event.detail.value;
     this.difficultyFilters = selectedValues;
@@ -95,7 +101,7 @@ export class HomePage {
     this.ratingFilters = selectedValues;
     this.filter();
   }
-  
+
   filterByFeatures(values: string[]): Trail[] {
     return this.results!.filter((t) => {
       let check: boolean = true;
@@ -113,7 +119,32 @@ export class HomePage {
   }
 
   filterByRating(value: number): Trail[] {
-    
+    if (value == 0) {
+      return this.results;
+    }
     return this.results!.filter((t) => this.trailService.getAverageRating(t) >= value);
+  }
+
+  clearFeatures() {
+    this.selectedFeatures = undefined;
+    this.onFeatureChange({ detail: { value: [] } });
+  }
+
+  clearDifficulty() {
+    this.selectedDifficulty = undefined;
+    this.onDifficultyChange({ detail: { value: [] } });
+  }
+
+  clearRating() {
+    this.selectedRating = undefined;
+    this.onRatingChange({ detail: { value: [] } });
+  }
+
+  getFeatures(trail: Trail): string[] {
+    return this.trailService.getFeatures(trail);
+  }
+
+  getStars(trail: Trail): string[] {
+    return this.trailService.getStars(trail);
   }
 }
