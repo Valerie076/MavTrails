@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { MediaModalPage } from '../components/media-modal/media-modal.page';
+import { MenuComponent } from '../components/menu/menu.component';
+import { SharedModule } from '../modules/shared/shared-module';
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { MediaModalPage } from '../components/media-modal/media-modal.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedModule
   ],
   declarations: [HomePage, MediaModalPage]
 })
