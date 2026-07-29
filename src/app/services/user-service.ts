@@ -25,21 +25,12 @@ export class UserService {
     try {
       this.firebaseService.readCollectionByUid("users", uid).subscribe(
         res => {
-          console.log("get data");
-
-          console.log(res);
-
           //map JSON from firebase to Users
           let users = res.map((user: any) => new
             User(user.id, user.username, user.profilePicture, user.phone))
           //update BehaviorSubject to have newest Firebase values
           this._users.next(users)
-          console.log("LOOKIE HERE");
-
-          console.log(this._users);
-
           this.activeUser = users[0]
-
         },
       )
     } catch (err) {
@@ -66,12 +57,6 @@ export class UserService {
   }
 
   async updateUser(user: User) {
-      console.log(this.users);
-      
-      console.log(" this next one vvvvvv is the one to update");
-      console.log(user);
-      
-      
       await this.firebaseService.updateDoc(user, `users/${user.id}`);
     }
 
