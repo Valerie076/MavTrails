@@ -1,7 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title class="mavtrails">MavTrails</ion-title>
+    <div style="display: flex;">
+      <ion-img style="height: 100 px; width: 100px;" src="../../assets/logo-trans-white.png"></ion-img>
+      <ion-title class="mavtrails">MavTrails</ion-title>
+    </div>
     <ion-button slot="end" (click)="navigateModal()">Update Profile</ion-button>
     <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
   </ion-toolbar>
