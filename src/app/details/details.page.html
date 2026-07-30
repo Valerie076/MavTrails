@@ -9,7 +9,7 @@
 <ion-content>
 
 
-  <div class="details">{{trail.name}} Details </div>
+  <div class="details">{{trail.name}}</div>
 
   <ion-grid>
     <ion-row>
@@ -20,50 +20,101 @@
             <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
           </div>
           <br>
-          Rating: {{trail.ratings}}
+          <ion-icon style="font-size: 2em;" *ngFor="let star of getStars(trail)" [name]="
+                star === 'full' ? 'star' :
+                star === 'half' ? 'star-half' :
+                'star-outline'
+              ">
+            </ion-icon>
+          Rating: {{average}}
         </div>
       </ion-col>
 
-    
+      <ion-card>
+        <ion-card-title>
+          Music
+        </ion-card-title>
+        <ion-card-content>
+          @for(media of trail.media; track $index) {
+            @if(media.type == types.Song || media.type == types.Album || media.type == types.Playlist) {
+              <ion-card>
+                <ion-card-title>
+                  {{media.name}}
+                </ion-card-title>
+                <!-- <ion-card-subtitle>
+                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
+                  {{getUserName(media.uid)}}
+                  {{media.uid}}
+                </ion-card-subtitle> -->
+                <ion-card-content>
+                  {{media.creator}} <br>
+                  {{media.type}} <br>
+                  {{media.description}} <br>
+                  {{media.url}} <br>
+                </ion-card-content>
+              </ion-card>
+            }
+          }
+        </ion-card-content>
+      </ion-card>
 
-        <ion-card>
-          <ion-card-title>
-            Music
-          </ion-card-title>
-          <ion-card-content>
-            <ion-row>
-              Music 1
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
+      <ion-card>
+        <ion-card-title>
+          Audiobook
+        </ion-card-title>
+        <ion-card-content>
+          @for(media of trail.media; track $index) {
+            @if(media.type == types.Audiobook) {
+              <ion-card>
+                <ion-card-title>
+                  {{media.name}}
+                </ion-card-title>
+                <!-- <ion-card-subtitle>
+                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
+                  {{getUserName(media.uid)}}
+                  {{media.uid}}
+                </ion-card-subtitle> -->
+                <ion-card-content>
+                  {{media.creator}} <br>
+                  {{media.type}} <br>
+                  {{media.description}} <br>
+                  {{media.url}} <br>
+                </ion-card-content>
+              </ion-card>
+            }
+          }
+        </ion-card-content>
+      </ion-card>
 
-        <ion-card>
-          <ion-card-title>
-            Podcasts
-          </ion-card-title>
-          <ion-card-content>
-            <ion-row>
-              Podcast 1
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
+      <ion-card>
+        <ion-card-title>
+          Podcast
+        </ion-card-title>
+        <ion-card-content>
+          @for(media of trail.media; track $index) {
+            @if(media.type == types.Podcast) {
+              <ion-card>
+                <ion-card-title>
+                  {{media.name}}
+                </ion-card-title>
+                <!-- <ion-card-subtitle>
+                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
+                  {{getUserName(media.uid)}}
+                  {{media.uid}}
+                </ion-card-subtitle> -->
+                <ion-card-content>
+                  {{media.creator}} <br>
+                  {{media.type}} <br>
+                  {{media.description}} <br>
+                  {{media.url}} <br>
+                </ion-card-content>
+              </ion-card>
+            }
+          }
+        </ion-card-content>
+      </ion-card>
 
-        <ion-card>
-          <ion-card-title>
-            Audiobook
-          </ion-card-title>
-          <ion-card-content>
-            <ion-row>
-              Audiobook 1
-            </ion-row>
-            <ion-row>
-            </ion-row>
-            <ion-row>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-
-  </ion-row>
+    </ion-row>
 
   </ion-grid>
 
@@ -74,39 +125,66 @@
   <ion-button (click)="openRatingModal()">Rate Trail</ion-button>
   <ion-button (click)="navigatePage('home')">Home</ion-button>
 
- 
 
-  <ion-accordion-group>
-  <ion-accordion value="first">
-    <ion-item slot="header" color="light">
-      <ion-label>Description</ion-label>
-    </ion-item>
-    <div class="ion-padding" slot="content">First Content</div>
-  </ion-accordion>
-  <ion-accordion value="second">
-    <ion-item slot="header" color="light">
-      <ion-label>Features</ion-label>
-    </ion-item>
-    <div class="ion-padding" slot="content">Second Content</div>
-  </ion-accordion>
-  <ion-accordion value="third">
-    <ion-item slot="header" color="light">
-      <ion-label>Difficulty</ion-label>
-    </ion-item>
-    <div class="ion-padding" slot="content">Third Content</div>
+  <ion-accordion-group multiple="true" [value]="['description', 'features', 'difficulty', 'length', 'walk time']">
+    <ion-accordion value="description">
+      <ion-item slot="header" color="light">
+        <ion-label>Description</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{trail.description}}
+      </div>
     </ion-accordion>
-    <ion-accordion value="Fourth">
-    <ion-item slot="header" color="light">
-      <ion-label>Length</ion-label>
-    </ion-item>
-    <div class="ion-padding" slot="content">Fourth Content</div>
+    <ion-accordion value="features">
+      <ion-item slot="header" color="light">
+        <ion-label>Features</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        @for(feature of trail.features; track $index) {
+          <ion-icon size="large" [title]="feature | titlecase" [aria-label]="feature | titlecase" [name]="
+            feature === 'hills' ? 'chevron-up' :
+            feature === 'plains' ? 'remove' :
+            feature === 'wooded' ? 'leaf' :
+            feature === 'water' ? 'water' :
+            feature === 'houses' ? 'home' :
+            ''
+          "></ion-icon>
+          {{feature.toUpperCase()}}
+        }
+      </div>
     </ion-accordion>
-    <ion-accordion value="Fifth">
-    <ion-item slot="header" color="light">
-      <ion-label>Walk Time</ion-label>
-    </ion-item>
-    <div class="ion-padding" slot="content">Fifth Content</div>
-      </ion-accordion>
-</ion-accordion-group>
+    <ion-accordion value="difficulty">
+      <ion-item slot="header" color="light">
+        <ion-label>Difficulty</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-icon style="font-size: 2em;" *ngFor="let icon of getDifficulty(trail)" [name]="icon" class="difficulty" [title]="trail.difficulty | titlecase" [aria-label]="trail.difficulty | titlecase" [style]="
+          trail.difficulty === 'very' ? 'color: #77C6ED;' :
+          trail.difficulty === 'easy' ? 'color: #55E05F;' :
+          trail.difficulty === 'medium' ? 'color: #FFFA7A;' :
+          trail.difficulty === 'hard' ? 'color: #F26B6B;' :
+          trail.difficulty === 'master' ? 'color: #7C60D1;' :
+          'color: white;'">
+        </ion-icon>
+        {{trail.difficulty.toUpperCase()}}
+      </div>
+    </ion-accordion>
+    <ion-accordion value="length">
+      <ion-item slot="header" color="light">
+        <ion-label>Length</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{trail.length}} miles
+      </div>
+    </ion-accordion>
+    <ion-accordion value="walk time">
+      <ion-item slot="header" color="light">
+        <ion-label>Walk Time</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{trail.time}} minutes
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 
 </ion-content>
