@@ -102,7 +102,7 @@ export class MainMapPage implements OnInit {
     }
 
     this.previousLine = L.polyline(newPath, {
-      color: 'blue',
+      color: 'red',
       weight: 5,
       opacity: 0.7
     }).addTo(this.map);
@@ -138,10 +138,14 @@ export class MainMapPage implements OnInit {
     }
 
     this.previousLine = L.polyline(this.trailService.newTrailPath, {
-      color: 'blue',
+      color: 'red',
       weight: 5,
       opacity: 0.7
     }).addTo(this.map);
+
+  }
+
+  toggleHideTrails() {
 
   }
 
