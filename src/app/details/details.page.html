@@ -8,6 +8,7 @@
 
 <ion-content>
 
+  @if(mediaLoaded) {
 
   <div class="details">{{trail.name}}</div>
 
@@ -15,7 +16,13 @@
     <ion-row>
       <ion-col>
         <div>
-          Posted by: {{postedBy.username}}
+          <div class="subtitle">
+            Posted by: 
+            <ion-avatar class="avatar-card">
+              <ion-img [src]="postedBy.profilePicture"></ion-img>
+            </ion-avatar>
+            {{postedBy.username}}
+          </div>
           <div class="circle-picture">
             <img src="https://shopfivenine.com/cdn/shop/files/IMG_08582.jpg?v=1692306741&width=2588" />
           </div>
@@ -30,85 +37,109 @@
         </div>
       </ion-col>
 
-      <ion-card>
+      <ion-card class="media-card">
         <ion-card-title>
           Music
         </ion-card-title>
         <ion-card-content>
-          @for(media of trail.media; track $index) {
-            @if(media.type == types.Song || media.type == types.Album || media.type == types.Playlist) {
-              <ion-card>
-                <ion-card-title>
-                  {{media.name}}
-                </ion-card-title>
-                <!-- <ion-card-subtitle>
-                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
-                  {{getUserName(media.uid)}}
-                  {{media.uid}}
-                </ion-card-subtitle> -->
-                <ion-card-content>
-                  {{media.creator}} <br>
-                  {{media.type}} <br>
-                  {{media.description}} <br>
-                  {{media.url}} <br>
-                </ion-card-content>
-              </ion-card>
+          @if(mediaLoaded) {
+            @for(media of trail.media; track $index) {
+              @if(media.type == types.Song || media.type == types.Album || media.type == types.Playlist) {
+                <ion-card class="media-card">
+                  <ion-card-title>
+                    {{media.name}}
+                  </ion-card-title>
+                  <ion-card-subtitle class="subtitle">
+                    <ion-avatar class="avatar-card">
+                      <ion-img [src]="mediaDict[media.uid].profilePicture"></ion-img>
+                    </ion-avatar>
+                    {{mediaDict[media.uid].username}}
+                  </ion-card-subtitle>
+                  <ion-card-content class="media-card">
+                    {{media.creator}} <br>
+                    {{media.type}} <br>
+                    {{media.description}} <br>
+                    <a 
+                      [href]="media.url" 
+                      target="_blank" 
+                      rel="noopener noreferrer">
+                      Listen
+                    </a>
+                  </ion-card-content>
+                </ion-card>
+              }
             }
           }
         </ion-card-content>
       </ion-card>
 
-      <ion-card>
+      <ion-card class="media-card">
         <ion-card-title>
           Audiobook
         </ion-card-title>
         <ion-card-content>
-          @for(media of trail.media; track $index) {
-            @if(media.type == types.Audiobook) {
-              <ion-card>
-                <ion-card-title>
-                  {{media.name}}
-                </ion-card-title>
-                <!-- <ion-card-subtitle>
-                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
-                  {{getUserName(media.uid)}}
-                  {{media.uid}}
-                </ion-card-subtitle> -->
-                <ion-card-content>
-                  {{media.creator}} <br>
-                  {{media.type}} <br>
-                  {{media.description}} <br>
-                  {{media.url}} <br>
-                </ion-card-content>
-              </ion-card>
+          @if(mediaLoaded) {
+            @for(media of trail.media; track $index) {
+              @if(media.type == types.Audiobook) {
+                <ion-card class="media-card">
+                  <ion-card-title>
+                    {{media.name}}
+                  </ion-card-title>
+                  <ion-card-subtitle class="subtitle">
+                    <ion-avatar class="avatar-card">
+                      <ion-img [src]="mediaDict[media.uid].profilePicture"></ion-img>
+                    </ion-avatar>
+                    {{mediaDict[media.uid].username}}
+                  </ion-card-subtitle>
+                  <ion-card-content class="media-card">
+                    {{media.creator}} <br>
+                    {{media.type}} <br>
+                    {{media.description}} <br>
+                    <a 
+                      [href]="media.url" 
+                      target="_blank" 
+                      rel="noopener noreferrer">
+                      Listen
+                    </a>
+                  </ion-card-content>
+                </ion-card>
+              }
             }
           }
         </ion-card-content>
       </ion-card>
 
-      <ion-card>
+      <ion-card class="media-card">
         <ion-card-title>
           Podcast
         </ion-card-title>
         <ion-card-content>
-          @for(media of trail.media; track $index) {
-            @if(media.type == types.Podcast) {
-              <ion-card>
-                <ion-card-title>
-                  {{media.name}}
-                </ion-card-title>
-                <!-- <ion-card-subtitle>
-                  <ion-img [src]="getUserImage(media.uid)"></ion-img>
-                  {{getUserName(media.uid)}}
-                  {{media.uid}}
-                </ion-card-subtitle> -->
-                <ion-card-content>
-                  {{media.creator}} <br>
-                  {{media.type}} <br>
-                  {{media.description}} <br>
-                  {{media.url}} <br>
-                </ion-card-content>
-              </ion-card>
+          @if(mediaLoaded) {
+            @for(media of trail.media; track $index) {
+              @if(media.type == types.Podcast) {
+                <ion-card class="media-card">
+                  <ion-card-title>
+                    {{media.name}}
+                  </ion-card-title>
+                  <ion-card-subtitle class="subtitle">
+                    <ion-avatar class="avatar-card">
+                      <ion-img [src]="mediaDict[media.uid].profilePicture"></ion-img>
+                    </ion-avatar>
+                    {{mediaDict[media.uid].username}}
+                  </ion-card-subtitle>
+                  <ion-card-content class="media-card">
+                    {{media.creator}} <br>
+                    {{media.type}} <br>
+                    {{media.description}} <br>
+                    <a 
+                      [href]="media.url" 
+                      target="_blank" 
+                      rel="noopener noreferrer">
+                      Listen
+                    </a>
+                  </ion-card-content>
+                </ion-card>
+              }
             }
           }
         </ion-card-content>
@@ -186,5 +217,5 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-
+  }
 </ion-content>

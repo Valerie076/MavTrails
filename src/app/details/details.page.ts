@@ -29,49 +29,44 @@ export class DetailsPage implements OnInit {
 
   types = MediaType
 
+  mediaLoaded: boolean = false;
   mediaDict: Record<string, User> = {
   }
-  
+
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg", "402-676-67676")
 
   constructor(
     private trailService: TrailService,
     private router: Router,
     private modalService: ModalService,
-    private userService: UserService,
-    private firebaseService: FirebaseService
+    private userService: UserService
   ) { }
 
-  async ngOnInit() {
-    this.trail = this.trailService.activeTrail;
+  ngOnInit() {
 
-    // if (this.trail.uid) {
-    //   const trailUser = await this.userService.getDataOnce(this.trail.uid);
-    //   if (trailUser) {
-    //     this.postedBy = trailUser[0] as User;        
-    //   }
-    // }
+  }
 
-    // for (let media of this.trail.media) {
-    //   const mediaUser = await this.userService.getDataOnce(media.uid);
-    //   if (mediaUser) {
-    //     this.mediaDict[media.uid] = mediaUser[0] as User;
-    //   }
-    // }
-    // for (let media of this.trail.media) {
+  async ionViewWillEnter() {
+    this.trail = this.trailService.activeTrail;    
 
-    //   await this.getUser(media.uid).then((user) => {
-    //     if (user) {
-    //       console.log("hiii");
-          
-          
-    //       this.mediaDict[media.uid] = user as User;
-    //       console.log(this.mediaDict);
-    //     }
-    //   });
-    // }
+    if (this.trail.uid) {
+      const trailUser = await this.userService.getDataOnce(this.trail.uid);
+      if (trailUser) {
+        this.postedBy = trailUser[0] as User;
+      }
+    }
 
-    // console.log(this.mediaDict);
+    await Promise.all(
+      this.trail.media.map(async media => {
+        const mediaUser = await this.userService.getDataOnce(media.uid);
+
+        if (mediaUser) {
+          this.mediaDict[media.uid] = mediaUser[0] as User;
+        }
+      })
+    );
+
+    this.mediaLoaded = true;
 
     this.average = Math.round(this.trailService.getAverageRating(this.trail) * 10) / 10;
   }
@@ -86,7 +81,7 @@ export class DetailsPage implements OnInit {
 
   // getUser(uid: string) {
   //   console.log("hi");
-    
+
   //   return this.mediaDict[uid];
   // }
 
