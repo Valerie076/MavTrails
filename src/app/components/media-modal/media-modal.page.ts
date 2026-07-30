@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MediaType } from 'src/app/enums/media-type';
 import { Media } from 'src/app/models/media';
+import { ErrorService } from 'src/app/services/error-service';
 import { TrailService } from 'src/app/services/trail-service';
 import { UserService } from 'src/app/services/user-service';
 
@@ -26,7 +27,8 @@ export class MediaModalPage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private trailService: TrailService,
-    private userService: UserService
+    private userService: UserService,
+    private errorService: ErrorService
   ) { }
 
   closeModal(){
@@ -34,6 +36,10 @@ export class MediaModalPage implements OnInit {
   }
 
   saveMedia() {
+    if (!this.validateEntries()) {
+      return;
+    }
+
     this.closeModal();
 
     let media = new Media(
@@ -41,7 +47,8 @@ export class MediaModalPage implements OnInit {
       this.title,
       this.creator,
       this.type,
-      this.description
+      this.description,
+      this.url
     )
 
     this.trailService.activeTrail.media.push(media);
@@ -50,6 +57,31 @@ export class MediaModalPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  validateEntries(): boolean {
+    if (this.title == "") {
+      this.errorService.createAlert("Invalid Entry", "Media title cannot be empty.");
+      return false;
+    }
+    if (this.type == undefined) {
+      this.errorService.createAlert("Invalid Entry", "Media type must be set.");
+      return false;
+    }
+    if (this.url == "") {
+      this.errorService.createAlert("Invalid Entry", "Media URL cannot be empty.");
+      return false;
+    }
+    if (this.creator == "") {
+      this.errorService.createAlert("Invalid Entry", "Media creator cannot be empty.");
+      return false;
+    }
+    if (this.description == "") {
+      this.errorService.createAlert("Invalid Entry", "Media description cannot be empty")
+      return false;
+    }
+
+    return true;
   }
 
 }
