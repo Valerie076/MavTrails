@@ -82,11 +82,11 @@ export class TrailModalPage implements OnInit {
       this.errorService.createAlert("Invalid Entry", "Trail difficulty cannot be empty")
       return false;
     }
-    if (this.length == undefined) {
+    if (this.length == undefined || this.length.toString() == "") {
       this.errorService.createAlert("Invalid Entry", "Trail length cannot be empty")
       return false;
     }
-    if (this.time == undefined) {
+    if (this.time == undefined || this.time.toString() == "") {
       this.errorService.createAlert("Invalid Entry", "Trail time cannot be empty")
       return false;
     }

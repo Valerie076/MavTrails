@@ -12,6 +12,7 @@ import { MediaModalPage } from '../components/media-modal/media-modal.page';
 
 import { register } from 'swiper/element/bundle';
 import { UserService } from '../services/user-service';
+import { FirebaseService } from '../services/firebase-service';
 
 register();
 
@@ -25,7 +26,13 @@ export class DetailsPage implements OnInit {
   detailsSubscription?: Subscription;
   trail!: Trail
   average: number = 0
-  
+
+  types = MediaType
+
+  mediaLoaded: boolean = false;
+  mediaDict: Record<string, User> = {
+  }
+
   postedBy: User = new User("ur mom", "MeruniPoopyButt", "https://thumbs.dreamstime.com/b/surprised-shocked-funny-bird-close-up-frame-highlighting-exaggerated-meme-worthy-facial-expressions-professional-photo-369144049.jpg", "402-676-67676")
 
   constructor(
@@ -35,8 +42,12 @@ export class DetailsPage implements OnInit {
     private userService: UserService
   ) { }
 
-  async ngOnInit() {
-    this.trail = this.trailService.activeTrail;
+  ngOnInit() {
+
+  }
+
+  async ionViewWillEnter() {
+    this.trail = this.trailService.activeTrail;    
 
     if (this.trail.uid) {
       const trailUser = await this.userService.getDataOnce(this.trail.uid);
@@ -45,9 +56,50 @@ export class DetailsPage implements OnInit {
       }
     }
 
-    this.average = this.trailService.getAverageRating(this.trail);
+    await Promise.all(
+      this.trail.media.map(async media => {
+        const mediaUser = await this.userService.getDataOnce(media.uid);
+
+        if (mediaUser) {
+          this.mediaDict[media.uid] = mediaUser[0] as User;
+        }
+      })
+    );
+
+    this.mediaLoaded = true;
+
+    this.average = Math.round(this.trailService.getAverageRating(this.trail) * 10) / 10;
   }
 
+  getDifficulty(trail: Trail) {
+    return this.trailService.getDifficulty(trail);
+  }
+
+  getStars(trail: Trail): string[] {
+    return this.trailService.getStars(trail);
+  }
+
+  // getUser(uid: string) {
+  //   console.log("hi");
+
+  //   return this.mediaDict[uid];
+  // }
+
+  // getUserImage(uid: string) {
+  //   return this.getUser(uid).profilePicture;
+  //   // this.getUser(uid).then((user) => {
+  //   //   const u: User = user as User;
+  //   //   return u.profilePicture;
+  //   // });
+  // }
+
+  // getUserName(uid: string) {
+  //   return this.getUser(uid).username;
+  //   // this.getUser(uid).then((user) => {
+  //   //   const u: User = user as User;
+  //   //   return u.username;
+  //   // });
+  // }
 
   navigatePage(path: string) {
     this.router.navigateByUrl(path);
