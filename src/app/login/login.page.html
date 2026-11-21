@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>MavTrails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <div style="display: flex;">
+      <ion-img style="height: 100 px; width: 100px;" src="../../assets/logo-trans-white.png"></ion-img>
+      <ion-title class="mavtrails">MavTrails</ion-title>
+    </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style=" display: flex; justify-content: center;">
+    <img style="width: 400px; height: 400px;" alt="MavTrails logo" src="../../assets/logo-trans-white.png" />
+  </div>
+
+  <ion-card class="ion-text-center" style="width: 30%;   margin-left: auto;
+  margin-right: auto;">
+    <ion-card-title>
+      Login
+    </ion-card-title>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Email:" placeholder="enter email here" type="email" [(ngModel)]="emailIn"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Password:" placeholder="enter password here" type="password" [(ngModel)]="passwordIn"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <!-- <ion-col>
+      </ion-col> -->
+      <ion-col>
+        <ion-button size = large (click)="login()">Sign In</ion-button>
+        <ion-row>
+        </ion-row>
+        <ion-button size = large (click)="presentRegister()">Register</ion-button>
+      </ion-col>
+      <!-- <ion-col>
+      </ion-col> -->
+    </ion-row>
+
+  </ion-grid>
+
+  <img
+  src="../../assets/walk" width="1900 px">
+
+
+</ion-content>

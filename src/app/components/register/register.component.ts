@@ -1,0 +1,74 @@
+import { Component, OnInit } from '@angular/core';
+import { User as FirebaseUser, UserCredential } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth-service';
+import { ErrorService } from 'src/app/services/error-service';
+import { ModalService } from 'src/app/services/modal-service';
+import { UserService } from 'src/app/services/user-service';
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
+  standalone: false
+})
+export class RegisterComponent  implements OnInit {
+  regEmailIn: string = "";
+  regPasswordIn: string = "";
+  regPasswordConfIn: string = "";
+
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private modalService: ModalService,
+    private errorService: ErrorService,
+    private router: Router
+  ) { }
+
+  ngOnInit() {}
+
+  dismissModal() {
+    this.modalService.dismiss()
+  }
+
+  async register() {
+    try {
+      let result = await this.authService.register(this.regEmailIn, this.regPasswordIn, this.regPasswordConfIn);
+  
+      if (result != null) {
+        this.dismissModal();
+        this.createUser(result.user);
+        this.router.navigateByUrl("home");
+      } else {
+        // this.errorService.createAlert("Error", "Failed to register.");
+        this.clearPasswords();
+      }
+    } catch (err: any) {
+      this.errorService.createAlert("Error", err.message);
+    }
+  }
+
+  createUser(user: FirebaseUser) {
+    let newUser = new User(user.uid, "", "../../assets/logo.png", "");
+    this.userService.saveUser(newUser);
+    this.userService.activeUser = newUser
+  }
+
+  clearFields() {
+    this.regEmailIn = "";
+    this.clearPasswords();
+  }
+  
+  clearPasswords() {
+    this.regPasswordIn = "";
+    this.regPasswordConfIn = "";
+  }
+
+  eventHandlerReg(keyCode: number) {
+    if (keyCode === 13) {
+      // Pressed ENTER
+      this.register()
+    }
+  }
+}

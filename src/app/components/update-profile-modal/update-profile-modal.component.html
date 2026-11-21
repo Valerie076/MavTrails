@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Update Your Profile!
+    </ion-title>
+
+    <ion-button slot="end" (click)="closeModal()">
+      Close
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+  <ion-input [(ngModel)]="phoneIn" label="Phone:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="usernameIn" label="Username:" placeholder="enter here"></ion-input>
+  <ion-input [(ngModel)]="profilePictureIn" label="Profile Pic:" placeholder="enter here"></ion-input>
+</ion-card>
+
+<ion-button (click)="saveProfile()">
+  Submit
+</ion-button>

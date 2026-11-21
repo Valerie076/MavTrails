@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Media</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-input [(ngModel)]="title" label="Title" placeholder="Enter media title">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select [(ngModel)]="type" label="Media Type" placeholder="Choose type">
+
+      @for(type of mediaTypes; track $index) {
+        <ion-select-option value="{{type}}">{{type}}</ion-select-option>
+      }
+
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="url" label="Media URL" placeholder="Paste image/media link. Images must end with image extension">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="creator" label="Creator" placeholder="Add the author/creator of the media">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea [(ngModel)]="description" label="Description" placeholder="Write a description">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="saveMedia()">
+    Save Media
+  </ion-button>
+
+</ion-content>

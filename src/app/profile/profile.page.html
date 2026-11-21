@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div style="display: flex;">
+      <ion-img style="height: 100 px; width: 100px;" src="../../assets/logo-trans-white.png"></ion-img>
+      <ion-title class="mavtrails">MavTrails</ion-title>
+    </div>
+    <ion-button slot="end" (click)="navigateModal()">Update Profile</ion-button>
+    <ion-button slot="end" (click)="logout()" color="danger">Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="false">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" class="base-img">
+    <ion-card>
+        <ion-img
+          src="https://png.pngtree.com/background/20250121/original/pngtree-elegant-green-flower-border-design-picture-image_16226054.jpg"></ion-img>
+    </ion-card>
+  </div>
+
+ <div id="profilePic" class="center">
+    <ion-avatar class="avatar-card">
+        <ion-img src="{{user.profilePicture}}" alt="Profile Picture"></ion-img>
+    </ion-avatar>
+  </div>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+      <ion-col size="8" size-md="6" size-lg="4">
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <h1>Hello, {{user.username}}</h1>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <strong>
+              Username: {{user.username}}
+              <br>
+              Phone: {{user.phone}}
+            </strong>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+
+<!-- NOTE: Once we get the firebase stuff and everything can be applied to each page we can do mustache notation -->

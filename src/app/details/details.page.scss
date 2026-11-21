@@ -1,0 +1,66 @@
+.circle-picture {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.details {
+  font-size: 40px;
+  // font-family: 'Comic Shanns', Comic;
+  left: 37%;
+  text-transform: capitalize;
+}
+
+.trail-swiper {
+  width: 100%;
+  height: 250px;
+  margin-top: -50px; // adjust as needed
+}
+
+.trail-swiper img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+
+  .trail-swiper {
+    width: 100%;
+    height: 250px;
+    margin-top: -50px; // Try -75px or -100px if needed
+  }
+}
+
+.avatar-card {
+
+  // width: 100%;
+  // height: 100%;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  top: 1.5%;
+}
+
+.media-card {
+  min-width: 10%;
+  color: white;
+}
+
+.media-content {
+  max-width: 20em;
+}
+
+.subtitle {
+  display: flex;
+  gap: 9px;
+}
+
+body, html, * {
+  font-family: 'Boldonse', static;
+}

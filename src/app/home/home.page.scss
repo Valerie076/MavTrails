@@ -25,3 +25,50 @@
 #container a {
   text-decoration: none;
 }
+
+.star-one {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.menu-button {
+  width: 140px;
+  margin-left: 45%
+}
+
+.search {
+  width: 30em;
+}
+
+.trail-grid ion-row:nth-child(odd) {
+  background-color: #161616;
+}
+
+.trail-grid ion-row:nth-child(even) {
+  background-color: #101010;
+}
+
+.trail-button {
+  width: 100%;
+}
+
+.name {
+  font-size: large;
+  text-transform: capitalize;
+}
+
+.description {
+  color: white;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: none;
+}
+
+.difficulty {
+  font-size: large;
+}
+
+body, html, * {
+  font-family: 'Boldonse', static;
+}
